@@ -57,7 +57,7 @@ public class ShipMovement : MonoBehaviour
 	void Update ()
     {
         if (Input.GetKey(KeyCode.DownArrow) == true ||
-            Input.acceleration.y > -.25)
+            (Input.acceleration.y > -.25 && Input.acceleration.y != 0))
         {
             Dive();
         }
