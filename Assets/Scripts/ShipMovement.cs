@@ -49,6 +49,7 @@ public class ShipMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        rigidbody.velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) ||
             (Input.acceleration.y > -.25 && Input.acceleration.y != 0))
         {

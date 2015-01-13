@@ -22,7 +22,7 @@ public class CameraMovement : MonoBehaviour
 		{
 			Quaternion originalRotation = transform.rotation;
 			Vector3 targetDirection = waypoints[0].position - transform.position;
-			Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime / 4, 0);
+			Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime / 2, 0);
 			transform.rotation = Quaternion.LookRotation(newDirection);
 
 			if(originalRotation != transform.rotation)

@@ -20,6 +20,7 @@ public class CheckpointBehavior : MonoBehaviour
 
         if (cameraWaypoint)
         {
+            cameraWaypoint = false;
             CameraMovement.cameraMovement.NextWaypoint();
         }
 
