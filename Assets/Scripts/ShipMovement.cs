@@ -55,7 +55,7 @@ public class ShipMovement : MonoBehaviour
         {
             Dive();
         } else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) ||
-                   Input.acceleration.y < -.85)
+            Input.acceleration.y < -.85)
         {
             Ascend();
         }
@@ -65,7 +65,7 @@ public class ShipMovement : MonoBehaviour
         {
             BankLeft();
         } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) ||
-                   Input.acceleration.x > .25)
+            Input.acceleration.x > .25)
         {
             BankRight();
         }

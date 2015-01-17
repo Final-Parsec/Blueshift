@@ -6,11 +6,14 @@ public class Turret : MonoBehaviour
     public TagsAndEnums.ProjectileType projectileType;
     public float shootSpeed;
     public int aimRotationSpeed;
-
+    public int aimError;
+    public int numProjectilesInBurst;
+    public float burstInterval;
     private GameObject target;
 
     private static Vector3 FindInterceptVector(Vector3 shotOrigin, float shotSpeed,
-                                               Vector3 targetOrigin, Vector3 targetVel) {
+                                               Vector3 targetOrigin, Vector3 targetVel)
+    {
         
         Vector3 dirToTarget = Vector3.Normalize(targetOrigin - shotOrigin);
         
@@ -32,11 +35,13 @@ public class Turret : MonoBehaviour
         // Now all we have to find is the orthogonal velocity of the shot
         
         float shotVelSpeed = shotVelTang.magnitude;
-        if (shotVelSpeed > shotSpeed) {
+        if (shotVelSpeed > shotSpeed)
+        {
             // Shot is too slow to intercept target, it will never catch up.
             // Do our best by aiming in the direction of the targets velocity.
             return (targetVel.normalized * shotSpeed).normalized * -1;
-        } else {
+        } else
+        {
             // We know the shot speed, and the tangential velocity.
             // Using pythagoras we can find the orthogonal velocity.
             float shotSpeedOrth =
@@ -48,24 +53,31 @@ public class Turret : MonoBehaviour
         }
     }
 
-    IEnumerator Fire()
+    IEnumerator BurstFire()
     {
         while (target != null)
         {
             yield return new WaitForSeconds(shootSpeed);
-            if (target == null)
-                break;
+            for (int x = 0; x < numProjectilesInBurst; x++)
+            {
+                if (target == null)
+                    break;
 
-            Projectile proj = Projectile.GetProjectile(projectileType, this);
-
-            Vector3 projMoveVector = Vector3.Normalize(proj.transform.position - target.transform.position);
-            Vector3 shipMoveVector = CameraMovement.cameraMovement.GetMovementVector();
-            Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed * -1;
-
-            Vector3 aimVector = FindInterceptVector(proj.transform.position, proj.speed, target.transform.position, shipVelocity);
+                Projectile proj = Projectile.GetProjectile(projectileType, this);
             
-            StartCoroutine(proj.Intercept(aimVector));
-
+                Vector3 aimErrorVector = new Vector3(Random.Range(-1, 1),
+                                                     Random.Range(-1, 1),
+                                                     Random.Range(-1, 1)).normalized * aimError;
+                Vector3 projMoveVector = Vector3.Normalize(proj.transform.position - target.transform.position);
+                Vector3 shipMoveVector = CameraMovement.cameraMovement.GetMovementVector();
+                Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed * -1;
+            
+                Vector3 aimVector = FindInterceptVector(proj.transform.position, proj.speed, target.transform.position - aimErrorVector, shipVelocity);
+            
+                StartCoroutine(proj.Intercept(aimVector));
+                if(numProjectilesInBurst != 1)
+                    yield return new WaitForSeconds(burstInterval);
+            }
         }
     }
 
@@ -87,7 +99,7 @@ public class Turret : MonoBehaviour
         {
             target = other.gameObject;
             StartCoroutine(Aim());
-            StartCoroutine(Fire());
+            StartCoroutine(BurstFire());
         }
     }
     
