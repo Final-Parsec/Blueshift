@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: d3a6b2836bde37c4d8af44f5028893d0
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: glass_pod_mesh p_pod
+    100002: //RootNode
+    100004: pod_mesh_p_pod body
+    100006: pod_mesh_p_pod chasis
+    100008: pod_mesh_p_pod left_balance
+    100010: pod_mesh_p_pod left_balance_wheel
+    100012: pod_mesh_p_pod left_fin
+    100014: pod_mesh_p_pod left_fin_mount
+    100016: pod_mesh_p_pod left_flakCannon
+    100018: pod_mesh_p_pod left_plasmaWelder
+    100020: pod_mesh_p_pod left_rocket
+    100022: pod_mesh_p_pod right_balance
+    100024: pod_mesh_p_pod right_balance_wheel
+    100026: pod_mesh_p_pod right_fin
+    100028: pod_mesh_p_pod right_fin_mount
+    100030: pod_mesh_p_pod right_flakCannon
+    100032: pod_mesh_p_pod right_plasmaWelder
+    100034: pod_mesh_p_pod right_rocket
+    100036: pod_mesh_p_pod thruster
+    100038: tile_base_standard_tile_reference
+    100040: tile_reference_tile_base_standard1
+    100042: tile_reference_tile_base_standard2
+    100044: tile_reference_tile_base_standard3
+    100046: tile_reference_tile_base_standard4
+    100048: tile_reference_tile_base_standard5
+    100050: tile_reference_tile_base_standard6
+    400000: glass_pod_mesh p_pod
+    400002: //RootNode
+    400004: pod_mesh_p_pod body
+    400006: pod_mesh_p_pod chasis
+    400008: pod_mesh_p_pod left_balance
+    400010: pod_mesh_p_pod left_balance_wheel
+    400012: pod_mesh_p_pod left_fin
+    400014: pod_mesh_p_pod left_fin_mount
+    400016: pod_mesh_p_pod left_flakCannon
+    400018: pod_mesh_p_pod left_plasmaWelder
+    400020: pod_mesh_p_pod left_rocket
+    400022: pod_mesh_p_pod right_balance
+    400024: pod_mesh_p_pod right_balance_wheel
+    400026: pod_mesh_p_pod right_fin
+    400028: pod_mesh_p_pod right_fin_mount
+    400030: pod_mesh_p_pod right_flakCannon
+    400032: pod_mesh_p_pod right_plasmaWelder
+    400034: pod_mesh_p_pod right_rocket
+    400036: pod_mesh_p_pod thruster
+    400038: tile_base_standard_tile_reference
+    400040: tile_reference_tile_base_standard1
+    400042: tile_reference_tile_base_standard2
+    400044: tile_reference_tile_base_standard3
+    400046: tile_reference_tile_base_standard4
+    400048: tile_reference_tile_base_standard5
+    400050: tile_reference_tile_base_standard6
+    2300000: glass_pod_mesh p_pod
+    2300002: pod_mesh_p_pod body
+    2300004: pod_mesh_p_pod chasis
+    2300006: pod_mesh_p_pod left_balance
+    2300008: pod_mesh_p_pod left_balance_wheel
+    2300010: pod_mesh_p_pod left_fin
+    2300012: pod_mesh_p_pod left_fin_mount
+    2300014: pod_mesh_p_pod left_flakCannon
+    2300016: pod_mesh_p_pod left_plasmaWelder
+    2300018: pod_mesh_p_pod left_rocket
+    2300020: pod_mesh_p_pod right_balance
+    2300022: pod_mesh_p_pod right_balance_wheel
+    2300024: pod_mesh_p_pod right_fin
+    2300026: pod_mesh_p_pod right_fin_mount
+    2300028: pod_mesh_p_pod right_flakCannon
+    2300030: pod_mesh_p_pod right_plasmaWelder
+    2300032: pod_mesh_p_pod right_rocket
+    2300034: pod_mesh_p_pod thruster
+    2300036: tile_base_standard_tile_reference
+    2300038: tile_reference_tile_base_standard1
+    2300040: tile_reference_tile_base_standard2
+    2300042: tile_reference_tile_base_standard3
+    2300044: tile_reference_tile_base_standard4
+    2300046: tile_reference_tile_base_standard5
+    2300048: tile_reference_tile_base_standard6
+    3300000: glass_pod_mesh p_pod
+    3300002: pod_mesh_p_pod body
+    3300004: pod_mesh_p_pod chasis
+    3300006: pod_mesh_p_pod left_balance
+    3300008: pod_mesh_p_pod left_balance_wheel
+    3300010: pod_mesh_p_pod left_fin
+    3300012: pod_mesh_p_pod left_fin_mount
+    3300014: pod_mesh_p_pod left_flakCannon
+    3300016: pod_mesh_p_pod left_plasmaWelder
+    3300018: pod_mesh_p_pod left_rocket
+    3300020: pod_mesh_p_pod right_balance
+    3300022: pod_mesh_p_pod right_balance_wheel
+    3300024: pod_mesh_p_pod right_fin
+    3300026: pod_mesh_p_pod right_fin_mount
+    3300028: pod_mesh_p_pod right_flakCannon
+    3300030: pod_mesh_p_pod right_plasmaWelder
+    3300032: pod_mesh_p_pod right_rocket
+    3300034: pod_mesh_p_pod thruster
+    3300036: tile_base_standard_tile_reference
+    3300038: tile_reference_tile_base_standard1
+    3300040: tile_reference_tile_base_standard2
+    3300042: tile_reference_tile_base_standard3
+    3300044: tile_reference_tile_base_standard4
+    3300046: tile_reference_tile_base_standard5
+    3300048: tile_reference_tile_base_standard6
+    4300000: glass_pod_mesh p_pod
+    4300002: pod_mesh_p_pod body
+    4300004: pod_mesh_p_pod chasis
+    4300006: pod_mesh_p_pod left_balance
+    4300008: pod_mesh_p_pod left_balance_wheel
+    4300010: pod_mesh_p_pod left_fin
+    4300012: pod_mesh_p_pod left_fin_mount
+    4300014: pod_mesh_p_pod left_flakCannon
+    4300016: pod_mesh_p_pod left_plasmaWelder
+    4300018: pod_mesh_p_pod left_rocket
+    4300020: pod_mesh_p_pod right_balance
+    4300022: pod_mesh_p_pod right_balance_wheel
+    4300024: pod_mesh_p_pod right_fin
+    4300026: pod_mesh_p_pod right_fin_mount
+    4300028: pod_mesh_p_pod right_flakCannon
+    4300030: pod_mesh_p_pod right_plasmaWelder
+    4300032: pod_mesh_p_pod right_rocket
+    4300034: pod_mesh_p_pod thruster
+    4300036: tile_base_standard_tile_reference
+    4300038: tile_reference_tile_base_standard1
+    4300040: tile_reference_tile_base_standard2
+    4300042: tile_reference_tile_base_standard3
+    4300044: tile_reference_tile_base_standard4
+    4300046: tile_reference_tile_base_standard5
+    4300048: tile_reference_tile_base_standard6
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -11,7 +11,28 @@ public class Projectile : MonoBehaviour
     public float selfDestructRange = 500;
     private bool hitObject = false;
 
-    public IEnumerator Intercepting(Vector3 moveVector)
+    public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, MonoBehaviour sender)
+    {
+        Projectile proj;
+        if (Projectile.projectilePool.ContainsKey(projectileType) && Projectile.projectilePool [projectileType].Count != 0)
+        {
+            proj = Projectile.projectilePool [projectileType] [0];
+            Projectile.projectilePool [projectileType].RemoveAt(0);
+            
+            proj.transform.rotation = sender.transform.rotation;
+            proj.transform.position = sender.transform.position;
+
+        } else
+        {
+            proj = (Instantiate(PrefabAccessor.prefabAccessor.projectilePrefabs [(int)projectileType],
+                                sender.transform.position,
+                                sender.transform.rotation) as GameObject).GetComponent<Projectile>();
+        }
+
+        return proj;
+    }
+
+    public IEnumerator Intercept(Vector3 moveVector)
     {
         Vector3 origin = transform.position;
         while (Vector3.Distance(origin, transform.position) < selfDestructRange && !hitObject)

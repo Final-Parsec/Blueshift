@@ -4,9 +4,9 @@ using System.Collections;
 public class CheckpointBehavior : MonoBehaviour
 {
 
-    public bool loadScene = false;
-    public bool cameraWaypoint = false;
-    public string sceneToLoad = "";
+    public bool loadScene;
+    public bool cameraWaypoint;
+    public string sceneToLoad;
 
     void OnTriggerEnter(Collider col)
     {

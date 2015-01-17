@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Turret : MonoBehaviour
 {
-    public static TagsAndEnums.ProjectileType projectileType;
+    public TagsAndEnums.ProjectileType projectileType;
     public float shootSpeed;
-    public int aimRotationSpeed = 3;
+    public int aimRotationSpeed;
+
     private GameObject target;
 
     private static Vector3 FindInterceptVector(Vector3 shotOrigin, float shotSpeed,
@@ -55,34 +56,15 @@ public class Turret : MonoBehaviour
             if (target == null)
                 break;
 
-            Projectile proj;
-            if (Projectile.projectilePool.ContainsKey(projectileType) && Projectile.projectilePool [projectileType].Count != 0)
-            {
-                proj = Projectile.projectilePool [projectileType] [0];
-                Projectile.projectilePool [projectileType].RemoveAt(0);
+            Projectile proj = Projectile.GetProjectile(projectileType, this);
 
-                proj.transform.rotation = transform.rotation;
-                proj.transform.position = transform.position;
-
-            } else
-            {
-                proj = (Instantiate(PrefabAccessor.prefabAccessor.projectilePrefabs [(int)projectileType],
-                                              transform.position,
-                                              transform.rotation) as GameObject).GetComponent<Projectile>();
-            }
-
-            Vector3 projMoveVector = new Vector3(proj.transform.position.x - target.transform.position.x,
-                                                 proj.transform.position.y - target.transform.position.y,
-                                                 proj.transform.position.z - target.transform.position.z).normalized;
-
-            float distance = Vector3.Distance(proj.transform.position, target.transform.position);
-            float travelTime = (distance) / proj.speed;
+            Vector3 projMoveVector = Vector3.Normalize(proj.transform.position - target.transform.position);
             Vector3 shipMoveVector = CameraMovement.cameraMovement.GetMovementVector();
-            Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed;
+            Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed * -1;
 
-            Vector3 aimVector = FindInterceptVector(proj.transform.position, proj.speed, target.transform.position, shipVelocity*-1);
+            Vector3 aimVector = FindInterceptVector(proj.transform.position, proj.speed, target.transform.position, shipVelocity);
             
-            StartCoroutine(proj.Intercepting(aimVector));
+            StartCoroutine(proj.Intercept(aimVector));
 
         }
     }
@@ -113,17 +95,5 @@ public class Turret : MonoBehaviour
     {
         if (other.gameObject.tag == TagsAndEnums.player)
             target = null;
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-    
     }
 }

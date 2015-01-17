@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class CameraMovement : MonoBehaviour
 {
     public static CameraMovement cameraMovement = null;
+
     public List<Transform> waypoints;
-    public float speed = 10;
+    public float speed;
 
     public Vector3 GetMovementVector()
     {
@@ -43,6 +44,12 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         cameraMovement = this;
+
+        waypoints[0].LookAt(transform.position);
+        for(int x = 1; x < waypoints.Count; x++)
+        {
+            waypoints[x].LookAt(waypoints[x-1].transform.position);
+        }
     }
     
     // Update is called once per frame
