@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class TagsAndEnums : MonoBehaviour {
-    public static string player = "playerShip";
+    public const string player = "playerShip";
+    public const string ignore = "ignore";
+    public const string enemy = "enemy";
+    public const string terrain = "terrain";
 
     public enum ProjectileType
     {

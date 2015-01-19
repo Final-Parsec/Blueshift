@@ -2,8 +2,6 @@
 
 public class ShipMovement : MonoBehaviour
 {
-    public static ShipMovement shipMovement;
-
     /// <summary>
     /// Decelerates the ship and raises on y-axis. 
     /// </summary>
@@ -70,30 +68,4 @@ public class ShipMovement : MonoBehaviour
             BankRight();
         }
     }
-
-    /// <summary>
-    /// Use this for initialization
-    /// </summary>
-    void Start()
-    {
-        shipMovement = this;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-
-
-//        RaycastHit rcHit;
-//        Ray ray = Vector3.down;
-//        if (Physics.Raycast(transform.position, ray, rcHit))
-//        {
-//            if (rcHit.collider.tag != "terrain")
-//            {
-//
-//                transform.position = 
-//            }
-//        }
-    }
-
 }

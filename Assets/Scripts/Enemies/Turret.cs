@@ -65,9 +65,9 @@ public class Turret : MonoBehaviour
 
                 Projectile proj = Projectile.GetProjectile(projectileType, this);
             
-                Vector3 aimErrorVector = new Vector3(Random.Range(-1, 1),
-                                                     Random.Range(-1, 1),
-                                                     Random.Range(-1, 1)).normalized * aimError;
+                Vector3 aimErrorVector = new Vector3(Random.Range(-1f, 1f),
+                                                     Random.Range(-1f, 1f),
+                                                     Random.Range(-1f, 1f)).normalized * aimError;
                 Vector3 projMoveVector = Vector3.Normalize(proj.transform.position - target.transform.position);
                 Vector3 shipMoveVector = CameraMovement.cameraMovement.GetMovementVector();
                 Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed * -1;

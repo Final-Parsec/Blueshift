@@ -10,8 +10,10 @@ public class Projectile : MonoBehaviour
     public TagsAndEnums.ProjectileType projectileType;
     public float selfDestructRange = 500;
     private bool hitObject = false;
+    private bool armed = false;
+    private string shooterTag;
 
-    public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, MonoBehaviour sender)
+    public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, MonoBehaviour shooter)
     {
         Projectile proj;
         if (Projectile.projectilePool.ContainsKey(projectileType) && Projectile.projectilePool [projectileType].Count != 0)
@@ -19,16 +21,17 @@ public class Projectile : MonoBehaviour
             proj = Projectile.projectilePool [projectileType] [0];
             Projectile.projectilePool [projectileType].RemoveAt(0);
             
-            proj.transform.rotation = sender.transform.rotation;
-            proj.transform.position = sender.transform.position;
+            proj.transform.rotation = shooter.transform.rotation;
+            proj.transform.position = shooter.transform.position;
 
         } else
         {
             proj = (Instantiate(PrefabAccessor.prefabAccessor.projectilePrefabs [(int)projectileType],
-                                sender.transform.position,
-                                sender.transform.rotation) as GameObject).GetComponent<Projectile>();
+                                shooter.transform.position,
+                                shooter.transform.rotation) as GameObject).GetComponent<Projectile>();
         }
-
+        proj.armed = true;
+        proj.shooterTag = shooter.tag;
         return proj;
     }
 
@@ -44,7 +47,7 @@ public class Projectile : MonoBehaviour
                                               transform.position.z - moveVector.z * step);
             yield return new WaitForEndOfFrame();
         }
-
+        armed = false;
         hitObject = false;
 
         transform.position = Vector3.zero;
@@ -52,24 +55,14 @@ public class Projectile : MonoBehaviour
             projectilePool.Add(projectileType, new List<Projectile>());
         projectilePool [projectileType].Add(this);
     }
-    
-    // Use this for initialization
-    void Start()
-    {
-    
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == TagsAndEnums.player)
+
+        if (other.tag != TagsAndEnums.ignore && shooterTag != other.tag && armed)
         {
             hitObject = true;
+            Debug.Log(other.tag);
         }
     }
 }
