@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     public float selfDestructRange = 500;
     private bool hitObject = false;
     private bool armed = false;
-    private string shooterTag;
+    private string shooter;
 
     public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, MonoBehaviour shooter)
     {
@@ -31,11 +31,16 @@ public class Projectile : MonoBehaviour
                                 shooter.transform.rotation) as GameObject).GetComponent<Projectile>();
         }
         proj.armed = true;
-        proj.shooterTag = shooter.tag;
+        proj.shooter = shooter.transform.root.gameObject.tag.Clone() as string;
         return proj;
     }
 
-    public IEnumerator Intercept(Vector3 moveVector)
+    public void Intercept(Vector3 moveVector)
+    {
+        StartCoroutine(InterceptCoroutine(moveVector));
+    }
+
+    IEnumerator InterceptCoroutine(Vector3 moveVector)
     {
         Vector3 origin = transform.position;
         while (Vector3.Distance(origin, transform.position) < selfDestructRange && !hitObject)
@@ -58,11 +63,14 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag != TagsAndEnums.ignore && shooterTag != other.tag && armed)
+        if (other.transform.root.gameObject.tag != TagsAndEnums.projectile && other.tag != TagsAndEnums.ignore && shooter != other.transform.root.gameObject.tag && armed)
         {
             hitObject = true;
-            Debug.Log(other.tag);
+            if (other.tag == TagsAndEnums.enemy)
+            {
+                EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();
+                enemy.Health -= damage;
+            }
         }
     }
 }

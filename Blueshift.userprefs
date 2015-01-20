@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShipShooting.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\EnemyHealth.cs">
     <Files>
-      <File FileName="Assets\Scripts\Projectiles\Projectile.cs" Line="21" Column="67" />
-      <File FileName="Assets\Scripts\Enemies\Turret.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemies\StationaryEnemy.cs" Line="62" Column="14" />
+      <File FileName="Assets\Scripts\Projectiles\Projectile.cs" Line="42" Column="5" />
+      <File FileName="Assets\Scripts\ShipShooting.cs" Line="7" Column="5" />
       <File FileName="Assets\Scripts\ShipMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ShipShooting.cs" Line="28" Column="48" />
-      <File FileName="Assets\Scripts\TagsAndEnums.cs" Line="8" Column="32" />
+      <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="20" Column="40" />
+      <File FileName="Assets\Scripts\PrefabAccessor.cs" Line="18" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

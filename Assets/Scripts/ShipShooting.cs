@@ -4,6 +4,12 @@ using System.Collections;
 public class ShipShooting : MonoBehaviour
 {
     public TagsAndEnums.ProjectileType projectileType;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     
     // Update is called once per frame
     void Update()
@@ -27,7 +33,14 @@ public class ShipShooting : MonoBehaviour
             Projectile proj = Projectile.GetProjectile(projectileType, this);
             proj.transform.LookAt(mainHit.point);
             Vector3 aimVector = Vector3.Normalize(transform.position - mainHit.point);
-            StartCoroutine(proj.Intercept(aimVector));
+            proj.Intercept(aimVector);
+            PlayShootSound();
         }
+    }
+
+    void PlayShootSound()
+    {
+        audioSource.clip = PrefabAccessor.prefabAccessor.GetRandomeSound(PrefabAccessor.prefabAccessor.shootSounds);
+        audioSource.Play();
     }
 }

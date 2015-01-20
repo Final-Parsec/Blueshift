@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Turret : MonoBehaviour
+public class StationaryEnemy : MonoBehaviour
 {
     public TagsAndEnums.ProjectileType projectileType;
     public float shootSpeed;
@@ -74,8 +74,8 @@ public class Turret : MonoBehaviour
             
                 Vector3 aimVector = FindInterceptVector(proj.transform.position, proj.speed, target.transform.position - aimErrorVector, shipVelocity);
             
-                StartCoroutine(proj.Intercept(aimVector));
-                if(numProjectilesInBurst != 1)
+                proj.Intercept(aimVector);
+                if (numProjectilesInBurst != 1)
                     yield return new WaitForSeconds(burstInterval);
             }
         }
@@ -107,5 +107,6 @@ public class Turret : MonoBehaviour
     {
         if (other.gameObject.tag == TagsAndEnums.player)
             target = null;
+
     }
 }
