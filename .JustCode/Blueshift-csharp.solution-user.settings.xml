@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<JustCodeSettings Version="0.0" Timestamp="61cc6e02-c9d2-4b7a-be0a-c4828db1779a">
+  <IgnoredErrorsAndWarningsSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <IgnoredErrorsAndWarnings Version="2">
+      <FilePath>
+        <FileRelativePath>Assets/Standard%20Assets/Water%20(Basic)/Sources/Scripts/WaterSimple.cs</FileRelativePath>
+        <ProjectRelativePath>Assembly-CSharp-firstpass-vs.csproj</ProjectRelativePath>
+        <IgnoredElement>
+          <TextualIdentifier>3578410239720893932</TextualIdentifier>
+        </IgnoredElement>
+      </FilePath>
+    </IgnoredErrorsAndWarnings>
+  </IgnoredErrorsAndWarningsSettings>
+</JustCodeSettings>
