@@ -2,6 +2,8 @@
 
 public class ShipMovement : MonoBehaviour
 {
+    public static ShipMovement shipMovement;
+
     /// <summary>
     /// Decelerates the ship and raises on y-axis. 
     /// </summary>
@@ -41,8 +43,6 @@ public class ShipMovement : MonoBehaviour
 
         // Do not let ship go below the ground.
         transform.Translate(0, pastBottomScreenEdge ? 0 : -.5f, 0);
-
-
     }
 
     void FixedUpdate()
@@ -67,5 +67,10 @@ public class ShipMovement : MonoBehaviour
         {
             BankRight();
         }
+    }
+
+    void Start()
+    {
+        shipMovement = this;
     }
 }

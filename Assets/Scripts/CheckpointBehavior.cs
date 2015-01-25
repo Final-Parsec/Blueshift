@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class CheckpointBehavior : MonoBehaviour
 {
 
     public bool loadScene;
-    public bool cameraWaypoint;
     public string sceneToLoad;
+    public bool cameraWaypoint;
+    public bool triggerEnemies;
+    public List<FlyingEnemy> enemiesToTrigger;
 
     void OnTriggerEnter(Collider col)
     {
@@ -22,6 +24,12 @@ public class CheckpointBehavior : MonoBehaviour
         {
             cameraWaypoint = false;
             CameraMovement.cameraMovement.NextWaypoint();
+        }
+
+        if (triggerEnemies)
+        {
+            foreach(FlyingEnemy enemy in enemiesToTrigger)
+                enemy.Trigger();
         }
 
     }

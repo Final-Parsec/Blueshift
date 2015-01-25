@@ -8,6 +8,11 @@ public class TagsAndEnums : MonoBehaviour {
     public const string terrain = "terrain";
     public const string projectile = "projectile";
 
+    public static float GetSqrDistance(Vector3 a, Vector3 b)
+    {
+        return (a-b).sqrMagnitude;
+    }
+
     public enum ProjectileType
     {
         missile
