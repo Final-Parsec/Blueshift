@@ -11,7 +11,7 @@ public class ShipMovement : MonoBehaviour
     {
         bool pastTopScreenEdge = Camera.main.WorldToScreenPoint(transform.position).y > Screen.height;
 
-        transform.Translate(0, pastTopScreenEdge ? 0 : .5f, 0);
+        transform.Translate(0, 0, pastTopScreenEdge ? 0 : .5f);
     }
     
     /// <summary>
@@ -42,7 +42,7 @@ public class ShipMovement : MonoBehaviour
         bool pastBottomScreenEdge = Camera.main.WorldToScreenPoint(transform.position).y <= 0;
 
         // Do not let ship go below the ground.
-        transform.Translate(0, pastBottomScreenEdge ? 0 : -.5f, 0);
+        transform.Translate(0, 0, pastBottomScreenEdge ? 0 : -.5f);
     }
 
     void FixedUpdate()
