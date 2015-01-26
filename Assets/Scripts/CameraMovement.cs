@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour
         {
             Quaternion originalRotation = transform.rotation;
             Vector3 targetDirection = waypoints [0].position - transform.position;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime / 2, 0);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime * 2, 0);
             transform.rotation = Quaternion.LookRotation(newDirection);
 
             if (originalRotation != transform.rotation)
@@ -61,6 +61,11 @@ public class CameraMovement : MonoBehaviour
             float step = speed * Time.deltaTime;
             Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);
             transform.position = transform.position - moveVector * step;
+
+            // make the ship 15 units in front of the camera
+            Vector3 shipPos = ShipMovement.shipMovement.transform.localPosition;
+            shipPos.z = 15;
+            ShipMovement.shipMovement.transform.localPosition = shipPos;
         }
     }
 }
