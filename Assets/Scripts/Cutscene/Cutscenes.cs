@@ -9,44 +9,55 @@ public class Cutscenes : MonoBehaviour{
 	Text speakerName;
 	bool talking = false;
 	private AudioSource audiosource;
+	float cortime = 0;
+	int corCharCount = 0;
+	string toSay;
 
 	void Start(){
 		io = new CutscenesIO (Application.loadedLevelName);
 		dialogue = GameObject.Find ("Dialogue").GetComponent<Text>();
 		speakerName = GameObject.Find ("CharName").GetComponent<Text> ();
+
+		StartCoroutine(SayDialogue());
 		//audiosource = GetComponent<AudioSource> ();
 	}
 
 	public void NextLine()
 	{
-		SetSpeaker (io.GetName(curLine));
-		StartCoroutine(SayDialogue(io.GetLine (curLine)));
+		corCharCount = 0;
 		curLine++;
+		toSay = io.GetLine (curLine);
+		SetSpeaker (io.GetName (curLine));
+		if (!talking)
+			StartCoroutine (SayDialogue ());
 	}
-
-	IEnumerator SayDialogue (string toSay) {
-		talking = true;
-		
-		for (int i = 0; i <= toSay.Length; i ++) {
-			dialogue.text = toSay.Substring(0, i);
-			//audiosource.Play ();
-			Debug.Log ("play");
-			yield return new WaitForSeconds (0.02f);
-		}
-		
-		//while (!Input.GetMouseButton(0))
-			//yield return new WaitForEndOfFrame();
-
-		talking = false;
-
-	}
-
+	
 	void Update()
 	{
-		if (Input.anyKeyDown)
+		if (Input.anyKeyDown && cortime > .1)
 		{
 			NextLine ();
 		}
+	}
+
+	IEnumerator SayDialogue () {
+		talking = true;
+		SetSpeaker (io.GetName (curLine));
+		toSay = io.GetLine (curLine);
+		while (corCharCount <= toSay.Length){
+			dialogue.text = toSay.Substring(0, corCharCount);
+			//audiosource.Play ();
+			//Debug.Log ("play");
+			cortime += .02f;
+			yield return new WaitForSeconds (0.02f);
+			corCharCount++;
+		}
+		
+		//while (!Input.GetMouseButton(0))
+			//yield return;
+
+		talking = false;
+
 	}
 
 	void SetSpeaker(string name){
