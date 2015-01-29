@@ -1,15 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraMovement.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Cutscene\Cutscenes.cs">
     <Files>
+      <File FileName="Assets\Scripts\Cutscene\Cutscenes.cs" Line="75" Column="12" />
       <File FileName="Assets\Scripts\CheckpointBehavior.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemies\FlyingEnemy.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Projectiles\Projectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ShipMovement.cs" Line="38" Column="42" />
+      <File FileName="Assets\Scripts\ShipMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ShipShooting.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TagsAndEnums.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraMovement.cs" Line="33" Column="112" />
+      <File FileName="Assets\Scripts\CameraMovement.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
