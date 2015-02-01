@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class Cutscenes : MonoBehaviour{
 	CutscenesIO io;
@@ -54,12 +55,25 @@ public class Cutscenes : MonoBehaviour{
 	IEnumerator SayDialogue () {
 		talking = true;
 		toSay = io.GetLine (curLine);
+		toSay = Regex.Replace (toSay, @"\r\n|\n|\r", "");//normalize curLine
 		while (corCharCount <= toSay.Length){
 			dialogue.text = toSay.Substring(0, corCharCount);
-			//audiosource.Play ();
-			//Debug.Log ("play");
-			cortime += .02f;
-			yield return new WaitForSeconds (0.02f);
+
+
+			//if()  //check if it's an integer
+			if(corCharCount > 0 && (toSay[corCharCount-1] != ' ' || toSay[corCharCount-1] != '\n')){
+				audio.Play();
+				Debug.Log (toSay[corCharCount-1]);
+			}
+
+			if(corCharCount > 0 && toSay[corCharCount-1] == '.'){
+				cortime+= .05f;
+				yield return new WaitForSeconds (0.5f);
+			}
+			else{
+				cortime += .02f;
+				yield return new WaitForSeconds (0.02f);
+			}
 			corCharCount++;
 		}
 		
