@@ -67,7 +67,6 @@ public class Cutscenes : MonoBehaviour{
 			//yield return;
 
 		talking = false;
-
 	}
 
 	void SetSpeaker(string name){

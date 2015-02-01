@@ -76,17 +76,17 @@ public class Projectile : MonoBehaviour
         return proj;
     }
 
-    public void Intercept(Vector3 moveVector)
+    public void Intercept(Vector3 moveVector, float reletiveSpeed)
     {
-        StartCoroutine(InterceptCoroutine(moveVector));
+        StartCoroutine(InterceptCoroutine(moveVector, reletiveSpeed));
     }
 
-    IEnumerator InterceptCoroutine(Vector3 moveVector)
+    IEnumerator InterceptCoroutine(Vector3 moveVector, float reletiveSpeed)
     {
         Vector3 origin = transform.position;
         while (TagsAndEnums.GetSqrDistance(origin, transform.position) < selfDestructRange*selfDestructRange && !hitObject)
         {
-            float step = speed * Time.deltaTime;
+            float step = (speed+reletiveSpeed) * Time.deltaTime;
             // update the position
             transform.position = new Vector3(transform.position.x - moveVector.x * step,
                                               transform.position.y - moveVector.y * step,

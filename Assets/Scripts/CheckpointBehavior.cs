@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class CheckpointBehavior : MonoBehaviour
@@ -8,7 +8,7 @@ public class CheckpointBehavior : MonoBehaviour
     public string sceneToLoad;
     public bool cameraWaypoint;
     public bool triggerEnemies;
-    public List<FlyingEnemy> enemiesToTrigger;
+    public List<CheckpointActivatedMovement> enemiesToTrigger;
 
     void OnTriggerEnter(Collider col)
     {
@@ -28,21 +28,9 @@ public class CheckpointBehavior : MonoBehaviour
 
         if (triggerEnemies)
         {
-            foreach(FlyingEnemy enemy in enemiesToTrigger)
+            foreach(CheckpointActivatedMovement enemy in enemiesToTrigger)
                 enemy.Trigger();
         }
 
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-    
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-    
     }
 }

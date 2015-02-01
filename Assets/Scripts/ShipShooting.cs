@@ -33,7 +33,7 @@ public class ShipShooting : MonoBehaviour
             Projectile proj = Projectile.GetProjectile(projectileType, transform.root.tag, transform.position);
             proj.transform.LookAt(mainHit.point);
             Vector3 aimVector = Vector3.Normalize(transform.position - mainHit.point);
-            proj.Intercept(aimVector);
+            proj.Intercept(aimVector, CameraMovement.cameraMovement.speed);
             PlayShootSound();
         }
     }

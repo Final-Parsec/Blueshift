@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BobbingEnemy : FlyingEnemy {
+public class BobbingEnemy : CheckpointActivatedMovement {
 
 	public int deltaYDistance;	// distance to bob
 	public float bobbingSpeed;
