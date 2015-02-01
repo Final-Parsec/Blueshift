@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
@@ -63,7 +63,7 @@ public class Cutscenes : MonoBehaviour{
 			//if()  //check if it's an integer
 			if(corCharCount > 0 && (toSay[corCharCount-1] != ' ' || toSay[corCharCount-1] != '\n')){
 				audio.Play();
-				Debug.Log (toSay[corCharCount-1]);
+				//Debug.Log (toSay[corCharCount-1]);
 			}
 
 			if(corCharCount > 0 && toSay[corCharCount-1] == '.'){
@@ -87,7 +87,7 @@ public class Cutscenes : MonoBehaviour{
 		speakerName.text = name;
 		Debug.Log (Resources.Load ("Portraits/" + name));
 		Debug.Log (portrait.rectTransform.rect);
-		portrait.sprite = Sprite.Create ((Texture2D)Resources.Load ("Portraits/" + name), new Rect(1,1,605,799), new Vector2(0, 0));
+		portrait.sprite = Sprite.Create ((Texture2D)Resources.Load ("Portraits/" + name), new Rect(1,1,605,799), new Vector2(0, 0));//TODO: use screen.width/screen.height and make a percentage of it
 	}
 
 
