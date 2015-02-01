@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public abstract class CheckpointActivatedMovement : MonoBehaviour
 {
     public float activeRange;
-    private BoxCollider boxCollider;
-    private SphereCollider sphereCollider;
+    protected BoxCollider boxCollider;
+    protected SphereCollider sphereCollider;
 
     protected abstract IEnumerator Active();
 
@@ -22,7 +22,7 @@ public abstract class CheckpointActivatedMovement : MonoBehaviour
         sphereCollider.enabled = false;
     }
     
-    public void Trigger()
+    public virtual void Trigger()
     {
         foreach (MeshRenderer meshrenderer in transform.root.GetComponentsInChildren<MeshRenderer>())
             meshrenderer.enabled = true;

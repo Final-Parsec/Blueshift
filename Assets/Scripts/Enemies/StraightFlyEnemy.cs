@@ -4,8 +4,6 @@ using System.Collections;
 public class StraightFlyEnemy : CheckpointActivatedMovement
 {
     public float speed;
-    public bool aimAtPlayer;
-
     private Vector3 moveVector;
     
     protected override IEnumerator Active()
