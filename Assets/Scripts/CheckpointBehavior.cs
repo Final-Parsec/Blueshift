@@ -9,27 +9,36 @@ public class CheckpointBehavior : MonoBehaviour
     public bool cameraWaypoint;
     public bool triggerEnemies;
     public List<CheckpointActivatedMovement> enemiesToTrigger;
+    public bool bossFight;
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag != "playerShip")
+        if (col.tag != "playerShip")
             return;
 
         if (loadScene && !string.IsNullOrEmpty(sceneToLoad))
         {
             Application.LoadLevel(sceneToLoad);
+            loadScene = false;
         }
 
         if (cameraWaypoint)
         {
-            cameraWaypoint = false;
             CameraMovement.cameraMovement.NextWaypoint();
+            cameraWaypoint = false;
         }
 
         if (triggerEnemies)
         {
-            foreach(CheckpointActivatedMovement enemy in enemiesToTrigger)
+            foreach (CheckpointActivatedMovement enemy in enemiesToTrigger)
                 enemy.Trigger();
+            triggerEnemies = false;
+        }
+
+        if (bossFight)
+        {
+            CameraMovement.cameraMovement.fightingBoss = true;
+            bossFight = false;
         }
 
     }

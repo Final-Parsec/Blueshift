@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
 
     public List<Transform> waypoints;
     public float speed;
+    public bool fightingBoss;
 
     public Vector3 GetMovementVector()
     {
@@ -56,16 +57,16 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // make the camera move
-        if (waypoints.Count != 0)
+        if (waypoints.Count != 0 && !fightingBoss)
         {
             float step = speed * Time.deltaTime;
             Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);
             transform.position = transform.position - moveVector * step;
-
-            // make the ship 15 units in front of the camera
-            Vector3 shipPos = ShipMovement.shipMovement.transform.localPosition;
-            shipPos.z = 15;
-            ShipMovement.shipMovement.transform.localPosition = shipPos;
         }
+
+        // make the ship be 15 units in front of the camera
+        Vector3 shipPos = ShipMovement.shipMovement.transform.localPosition;
+        shipPos.z = 15;
+        ShipMovement.shipMovement.transform.localPosition = shipPos;
     }
 }
