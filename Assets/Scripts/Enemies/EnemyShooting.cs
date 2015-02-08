@@ -21,6 +21,7 @@ public class EnemyShooting : MonoBehaviour {
     // Target Tracking
     public float aimRotationSpeed; // Note: set to 0 to not track the player.
     public Transform rotatingObject;
+	public TagsAndEnums.AimingDirection direction;
 
     IEnumerator Aim()
     {
@@ -40,6 +41,34 @@ public class EnemyShooting : MonoBehaviour {
 		if(currentMuzzlePoint >= muzzlePoints.Count)
 			currentMuzzlePoint = 0;
 		return point;
+	}
+
+	Vector3 GetAimingDirection()
+	{
+		switch(direction)
+		{
+		case TagsAndEnums.AimingDirection.forward:
+			return rotatingObject.forward;
+
+		case TagsAndEnums.AimingDirection.back:
+			return rotatingObject.forward * -1f;
+
+		case TagsAndEnums.AimingDirection.right:
+			return rotatingObject.right;
+
+		case TagsAndEnums.AimingDirection.left:
+			return rotatingObject.right * -1f;
+
+		case TagsAndEnums.AimingDirection.up:
+			return rotatingObject.up;
+
+		case TagsAndEnums.AimingDirection.down:
+			return rotatingObject.up * -1f;
+
+		default:
+			return rotatingObject.right;
+			
+		}
 	}
 
     void OnTriggerEnter(Collider other)

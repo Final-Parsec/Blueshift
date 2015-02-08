@@ -17,4 +17,14 @@ public class TagsAndEnums : MonoBehaviour {
     {
         missile
     };
+
+	public enum AimingDirection
+	{
+		forward,
+		back,
+		left,
+		right,
+		up,
+		down
+	};
 }
