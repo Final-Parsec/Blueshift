@@ -25,7 +25,7 @@ public class CutscenesIO{
 	//Returns the specified name attached to dialogue.
 	public string GetName(int dialogue_number)
 	{
-		if (lines.Length-1 > dialogue_number) 
+		if (lines.Length-1 >= dialogue_number) 
 		{
 			string[] str = lines [dialogue_number].Split ('@');
 			return str [0];

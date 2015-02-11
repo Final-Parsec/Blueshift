@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\EnemyShooting.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Cutscene\Cutscenes IO.cs">
     <Files>
+      <File FileName="Assets\Scripts\Cutscene\Cutscenes.cs" Line="60" Column="1" />
       <File FileName="Assets\Scripts\Enemies\EnemyShooting.cs" Line="35" Column="6" />
       <File FileName="Assets\Scripts\TagsAndEnums.cs" Line="21" Column="29" />
+      <File FileName="Assets\Scripts\Cutscene\Cutscenes IO.cs" Line="30" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

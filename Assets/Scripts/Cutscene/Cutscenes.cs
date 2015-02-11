@@ -43,9 +43,12 @@ public class Cutscenes : MonoBehaviour{
 	
 	void Update()
 	{
-		if (Input.anyKeyDown && cortime > .1)
+		if (Input.anyKeyDown)
 		{
-			NextLine ();
+			if(talking)
+				FinishCurrentLine();
+			else
+				NextLine ();
 		}
 	}
 
@@ -54,8 +57,12 @@ public class Cutscenes : MonoBehaviour{
 	/// </summary>
 	IEnumerator SayDialogue () {
 		talking = true;
-		toSay = io.GetLine (curLine);
+
+		if(curLine == 0)
+			toSay = io.GetLine (curLine);
+
 		toSay = Regex.Replace (toSay, @"\r\n|\n|\r", "");//normalize curLine
+
 		while (corCharCount <= toSay.Length){
 			dialogue.text = toSay.Substring(0, corCharCount);
 
@@ -66,7 +73,10 @@ public class Cutscenes : MonoBehaviour{
 				//Debug.Log (toSay[corCharCount-1]);
 			}
 
-			if(corCharCount > 0 && toSay[corCharCount-1] == '.'){
+			if(!talking)
+				yield break;
+
+			if((corCharCount > 0) && (toSay[corCharCount-1] == '.' || toSay[corCharCount-1] == '?' || toSay[corCharCount-1] == '!')){
 				cortime+= .05f;
 				yield return new WaitForSeconds (0.5f);
 			}
@@ -83,10 +93,19 @@ public class Cutscenes : MonoBehaviour{
 		talking = false;
 	}
 
+
+	/// <summary>
+	/// Skips to the end of the current line of dialogue.
+	/// </summary>
+	void FinishCurrentLine(){
+		corCharCount = toSay.Length-1;
+		talking = false;
+	}
+
+
 	void SetSpeaker(string name){
 		speakerName.text = name;
 		Debug.Log (Resources.Load ("Portraits/" + name));
-		Debug.Log (portrait.rectTransform.rect);
 		portrait.sprite = Sprite.Create ((Texture2D)Resources.Load ("Portraits/" + name), new Rect(1,1,605,799), new Vector2(0, 0));//TODO: use screen.width/screen.height and make a percentage of it
 	}
 
