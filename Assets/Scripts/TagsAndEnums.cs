@@ -15,7 +15,9 @@ public class TagsAndEnums : MonoBehaviour {
 
     public enum ProjectileType
     {
-        missile
+        missile,
+		plasmaSphere,
+		homerMissile
     };
 
 	public enum AimingDirection

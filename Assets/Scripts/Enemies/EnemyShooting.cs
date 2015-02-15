@@ -21,7 +21,6 @@ public class EnemyShooting : MonoBehaviour {
     // Target Tracking
     public float aimRotationSpeed; // Note: set to 0 to not track the player.
     public Transform rotatingObject;
-	public TagsAndEnums.AimingDirection direction;
 
     IEnumerator Aim()
     {
@@ -41,34 +40,6 @@ public class EnemyShooting : MonoBehaviour {
 		if(currentMuzzlePoint >= muzzlePoints.Count)
 			currentMuzzlePoint = 0;
 		return point;
-	}
-
-	Vector3 GetAimingDirection()
-	{
-		switch(direction)
-		{
-		case TagsAndEnums.AimingDirection.forward:
-			return rotatingObject.forward;
-
-		case TagsAndEnums.AimingDirection.back:
-			return rotatingObject.forward * -1f;
-
-		case TagsAndEnums.AimingDirection.right:
-			return rotatingObject.right;
-
-		case TagsAndEnums.AimingDirection.left:
-			return rotatingObject.right * -1f;
-
-		case TagsAndEnums.AimingDirection.up:
-			return rotatingObject.up;
-
-		case TagsAndEnums.AimingDirection.down:
-			return rotatingObject.up * -1f;
-
-		default:
-			return rotatingObject.right;
-			
-		}
 	}
 
     void OnTriggerEnter(Collider other)
@@ -116,9 +87,10 @@ public class EnemyShooting : MonoBehaviour {
         do
         {
             Projectile proj = Projectile.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
-            
-            Vector3 aimVector = transform.root.forward * -1;
-            
+
+            Vector3 aimVector = transform.forward * -1;
+			proj.transform.rotation = Quaternion.LookRotation(aimVector);
+
             proj.Intercept(aimVector, 0);
             count++;
         } while(shootFromEveryMuzzle && count < muzzlePoints.Count);
@@ -137,7 +109,9 @@ public class EnemyShooting : MonoBehaviour {
             Vector3 shipMoveVector = CameraMovement.cameraMovement.GetMovementVector();
             Vector3 shipVelocity = shipMoveVector * CameraMovement.cameraMovement.speed * -1;
             
-            Vector3 aimVector = Projectile.FindInterceptVector(proj.transform.position, proj.speed, ShipMovement.shipMovement.transform.position - aimErrorVector, shipVelocity);
+			Vector3 aimVector = Projectile.FindInterceptVector(proj.transform.position,
+			                                                   proj.speed, ShipMovement.shipMovement.transform.position - aimErrorVector,
+			                                                   CameraMovement.cameraMovement.fightingBoss? Vector3.zero : shipVelocity);
             
             proj.Intercept(aimVector, 0);
             count++;

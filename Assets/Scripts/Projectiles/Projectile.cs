@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     public static Dictionary<TagsAndEnums.ProjectileType, List<Projectile>> projectilePool = new Dictionary<TagsAndEnums.ProjectileType, List<Projectile>>();
     public float speed;
     public int damage;
     public TagsAndEnums.ProjectileType projectileType;
     public float selfDestructRange = 500;
-    private bool hitObject = false;
-    private bool armed = false;
+    protected bool hitObject = false;
+	protected bool armed = false;
     private string shooter;
 
     public static Vector3 FindInterceptVector(Vector3 shotOrigin, float shotSpeed,
@@ -76,10 +76,7 @@ public class Projectile : MonoBehaviour
         return proj;
     }
 
-    public void Intercept(Vector3 moveVector, float reletiveSpeed)
-    {
-        StartCoroutine(InterceptCoroutine(moveVector, reletiveSpeed));
-    }
+	public abstract void Intercept (Vector3 moveVector, float reletiveSpeed);
 
     IEnumerator InterceptCoroutine(Vector3 moveVector, float reletiveSpeed)
     {
