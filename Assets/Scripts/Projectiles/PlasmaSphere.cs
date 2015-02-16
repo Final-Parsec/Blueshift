@@ -29,8 +29,6 @@ public class PlasmaSphere : Projectile {
 		hitObject = false;
 		
 		transform.position = Vector3.zero;
-		if (!projectilePool.ContainsKey(projectileType))
-			projectilePool.Add(projectileType, new List<Projectile>());
-		projectilePool [projectileType].Add(this);
+        BackInThePool();
 	}
 }

@@ -86,7 +86,7 @@ public class EnemyShooting : MonoBehaviour {
         int count = 0;
         do
         {
-            Projectile proj = Projectile.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
+            Projectile proj = PrefabAccessor.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
 
             Vector3 aimVector = transform.forward * -1;
 			proj.transform.rotation = Quaternion.LookRotation(aimVector);
@@ -101,7 +101,7 @@ public class EnemyShooting : MonoBehaviour {
         int count = 0;
         do
         {
-            Projectile proj = Projectile.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
+            Projectile proj = PrefabAccessor.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
             
             Vector3 aimErrorVector = new Vector3(Random.Range(-1f, 1f),
                                                  Random.Range(-1f, 1f),

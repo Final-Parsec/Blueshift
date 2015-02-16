@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public abstract class Projectile : MonoBehaviour
 {
-    public static Dictionary<TagsAndEnums.ProjectileType, List<Projectile>> projectilePool = new Dictionary<TagsAndEnums.ProjectileType, List<Projectile>>();
     public float speed;
     public int damage;
     public TagsAndEnums.ProjectileType projectileType;
     public float selfDestructRange = 500;
     protected bool hitObject = false;
-	protected bool armed = false;
-    private string shooter;
+	public bool armed = false;
+    public string shooter;
 
     public static Vector3 FindInterceptVector(Vector3 shotOrigin, float shotSpeed,
                                                Vector3 targetOrigin, Vector3 targetVel)
@@ -55,27 +54,6 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, string shooter,  Vector3 spawnPosition)
-    {
-        Projectile proj;
-        if (Projectile.projectilePool.ContainsKey(projectileType) && Projectile.projectilePool [projectileType].Count != 0)
-        {
-            proj = Projectile.projectilePool [projectileType] [0];
-            Projectile.projectilePool [projectileType].RemoveAt(0);
-            proj.transform.position = spawnPosition;
-
-        } else
-        {
-            proj = (Instantiate(PrefabAccessor.prefabAccessor.projectilePrefabs [(int)projectileType],
-                                spawnPosition,
-                                Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Projectile>();
-        }
-        proj.transform.LookAt(ShipMovement.shipMovement.transform.position);
-        proj.armed = true;
-        proj.shooter = shooter;
-        return proj;
-    }
-
 	public abstract void Intercept (Vector3 moveVector, float reletiveSpeed);
 
     IEnumerator InterceptCoroutine(Vector3 moveVector, float reletiveSpeed)
@@ -92,11 +70,15 @@ public abstract class Projectile : MonoBehaviour
         }
         armed = false;
         hitObject = false;
+        BackInThePool();
+    }
 
-        transform.position = Vector3.zero;
-        if (!projectilePool.ContainsKey(projectileType))
-            projectilePool.Add(projectileType, new List<Projectile>());
-        projectilePool [projectileType].Add(this);
+    protected void BackInThePool()
+    {
+        transform.position = new Vector3(transform.position.x, -99, transform.position.z);
+        if (!PrefabAccessor.projectilePool.ContainsKey(projectileType))
+            PrefabAccessor.projectilePool.Add(projectileType, new List<Projectile>());
+        PrefabAccessor.projectilePool [projectileType].Add(this);
     }
 
     void OnTriggerEnter(Collider other)
