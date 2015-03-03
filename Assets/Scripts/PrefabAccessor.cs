@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class PrefabAccessor : MonoBehaviour
 {
     public static Dictionary<TagsAndEnums.ProjectileType, List<Projectile>> projectilePool = new Dictionary<TagsAndEnums.ProjectileType, List<Projectile>>();
+    public static List<Explosion> explosionPool = new List<Explosion>();
     public static PrefabAccessor prefabAccessor;
 
     public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, string shooter,  Vector3 spawnPosition)
@@ -27,14 +28,28 @@ public class PrefabAccessor : MonoBehaviour
         return proj;
     }
 
-    public static void MakeExplosion(Vector3 worldPosition)
+    public static Explosion GetExplosion(Vector3 worldPosition)
     {
+        Explosion explosion;
+        if (PrefabAccessor.explosionPool.Count != 0)
+        {
+            explosion = PrefabAccessor.explosionPool[0];
+            PrefabAccessor.explosionPool.RemoveAt(0);
+            explosion.transform.position = worldPosition;
+
+        } else
+        {
+            explosion = (Instantiate(prefabAccessor.explosionPrefab,
+                                     worldPosition,
+                                     Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Explosion>();
+        }
+        return explosion;
     }
 
     public List<GameObject> projectilePrefabs;
     public List<AudioClip> shootSounds;
     public List<AudioClip> destructionSounds;
-    public GameObject explosion;
+    public GameObject explosionPrefab;
 
     void Start()
     {
