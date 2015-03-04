@@ -16,22 +16,15 @@ public class EnemyHealth : MonoBehaviour
             health = value;
             if (health <= 0)
             {
-                PlayDeathSound();
-                Destroy(gameObject, .25f);
+                Death();
+                Destroy(gameObject);
             }
         }
     }
 
-    private AudioSource audioSource;
-    
-    void Start()
+    void Death()
     {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    void PlayDeathSound()
-    {
-        audioSource.clip = PrefabAccessor.prefabAccessor.GetRandomeSound(PrefabAccessor.prefabAccessor.destructionSounds);
-        audioSource.Play();
+        Explosion explosion = PrefabAccessor.GetExplosion(transform.position);
+        explosion.Explode();
     }
 }
