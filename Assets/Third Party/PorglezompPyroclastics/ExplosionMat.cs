@@ -32,14 +32,14 @@ public class ExplosionMat : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		renderer.material = new Material(ExplosionMaterial);
+		GetComponent<Renderer>().material = new Material(ExplosionMaterial);
 		UpdateShaderProperties();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (doUpdate) {
-			Material rsm = renderer.sharedMaterial;
+			Material rsm = GetComponent<Renderer>().sharedMaterial;
 			float minscale = Mathf.Min(transform.lossyScale.x, Mathf.Min(transform.lossyScale.y, transform.lossyScale.z));
 			// If anything has changed, update that property.
 			if (minscale != _radius) {
@@ -72,7 +72,7 @@ public class ExplosionMat : MonoBehaviour {
 	}
 	
 	public void UpdateShaderProperties() {
-		Material rsm = renderer.sharedMaterial;
+		Material rsm = GetComponent<Renderer>().sharedMaterial;
 		rsm.SetTexture("_RampTex", _ramp);
 		rsm.SetTexture("_MainTex", _noise);
 		rsm.SetFloat("_Heat", _heat);
@@ -84,6 +84,6 @@ public class ExplosionMat : MonoBehaviour {
 	
 	void SetShaderKeywords () {
 		var newKeywords = new List<string> {_scattering ? "SCATTERING_ON" : "SCATTERING_OFF", "OCTAVES_" + _octaves, qualitySel[_quality]};
-		renderer.sharedMaterial.shaderKeywords = newKeywords.ToArray();
+		GetComponent<Renderer>().sharedMaterial.shaderKeywords = newKeywords.ToArray();
 	}
 }

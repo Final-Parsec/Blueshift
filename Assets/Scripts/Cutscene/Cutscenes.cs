@@ -69,7 +69,7 @@ public class Cutscenes : MonoBehaviour{
 
 			//if()  //check if it's an integer
 			if(corCharCount > 0 && (toSay[corCharCount-1] != ' ' || toSay[corCharCount-1] != '\n')){
-				audio.Play();
+				GetComponent<AudioSource>().Play();
 				//Debug.Log (toSay[corCharCount-1]);
 			}
 

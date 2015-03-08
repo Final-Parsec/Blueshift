@@ -21,7 +21,7 @@ public class AssignMaterial : ScriptableWizard
 		gos = Selection.gameObjects;
 		foreach (GameObject go in gos)
 		{
-			go.renderer.material = newMaterial;
+			go.GetComponent<Renderer>().material = newMaterial;
 		}
 	}
 
