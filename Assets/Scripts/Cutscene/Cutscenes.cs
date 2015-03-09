@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Text.RegularExpressions;
 
 public class Cutscenes : MonoBehaviour{
+	public string sceneToLoad;
+	
 	CutscenesIO io;
 	Text dialogue;
 	Text speakerName;
@@ -36,13 +38,25 @@ public class Cutscenes : MonoBehaviour{
 		corCharCount = 0;
 		curLine++;
 		toSay = io.GetLine (curLine);
-		SetSpeaker (io.GetName (curLine));
-		if (!talking)
-			StartCoroutine (SayDialogue ());
+		
+		var currentSpeaker = io.GetName(curLine);
+		if (toSay == CutscenesIO.EndOfCutscene ||
+		    currentSpeaker == CutscenesIO.EndOfCutscene)
+		{
+			currentSpeaker = "Loading " + sceneToLoad + "...";
+			SetSpeaker(currentSpeaker);
+			Application.LoadLevel(this.sceneToLoad);
+		}
+		else
+		{
+			SetSpeaker(currentSpeaker);
+			if (!talking)
+				StartCoroutine (SayDialogue ());
+		}
 	}
 	
 	void Update()
-	{
+	{	
 		if (Input.anyKeyDown)
 		{
 			if(talking)
@@ -105,8 +119,21 @@ public class Cutscenes : MonoBehaviour{
 
 	void SetSpeaker(string name){
 		speakerName.text = name;
-		Debug.Log (Resources.Load ("Portraits/" + name));
-		portrait.sprite = Sprite.Create ((Texture2D)Resources.Load ("Portraits/" + name), new Rect(1,1,605,799), new Vector2(0, 0));//TODO: use screen.width/screen.height and make a percentage of it
+		var portraitImage = (Texture2D)Resources.Load ("Portraits/" + name);
+		
+		if (portraitImage == null)
+		{
+			dialogue.enabled = false;
+			portrait.enabled = false;
+		}
+		else
+		{
+			dialogue.enabled = true;
+			portrait.enabled = true;
+			
+			portrait.color = new Color(255, 255, 255, 245);
+			portrait.sprite = Sprite.Create (portraitImage, new Rect(1,1,605,799), new Vector2(0, 0));//TODO: use screen.width/screen.height and make a percentage of it
+		}
 	}
 
 
