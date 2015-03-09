@@ -10,6 +10,7 @@ public class Explosion : MonoBehaviour
     private Vector3 originalScale;
     private AudioSource audioSource;
     private ExplosionMat explosionMat;
+	private Renderer rendererComponent;
 
     // Use this for initialization
     void Awake()
@@ -17,15 +18,20 @@ public class Explosion : MonoBehaviour
         originalScale = transform.localScale;
         audioSource = GetComponent<AudioSource>();
         explosionMat = GetComponent<ExplosionMat>();
+		rendererComponent = GetComponent<Renderer> ();
     }
 
-    public void Explode()
+    public void Explode(int timeDelayMagnitude)
     {
-        StartCoroutine(ExplodeCoroutine());
+		StartCoroutine(ExplodeCoroutine(timeDelayMagnitude));
     }
     
-    IEnumerator ExplodeCoroutine()
+	IEnumerator ExplodeCoroutine(int timeDelayMagnitude)
     {
+		rendererComponent.enabled = false;
+		yield return new WaitForSeconds(timeDelayMagnitude * .1f);
+		rendererComponent.enabled = true;
+
         audioSource.clip = PrefabAccessor.prefabAccessor.GetRandomeSound(PrefabAccessor.prefabAccessor.destructionSounds);
         audioSource.Play();
 
@@ -50,6 +56,7 @@ public class Explosion : MonoBehaviour
     
     protected void BackInThePool()
     {
+		rendererComponent.enabled = false;
         explosionMat._alpha = 1;
         transform.localScale = originalScale;
         transform.position = new Vector3(transform.position.x, -99, transform.position.z);

@@ -28,9 +28,13 @@ public class PrefabAccessor : MonoBehaviour
         return proj;
     }
 
-    public static Explosion GetExplosion(Vector3 worldPosition)
+	public static Explosion GetExplosion(Vector3 worldPosition, float explosionPositionVariance)
     {
         Explosion explosion;
+		Vector3 positionVariance = new Vector3 (Random.Range(-explosionPositionVariance, explosionPositionVariance),
+		                                        Random.Range(-explosionPositionVariance, explosionPositionVariance),
+		                                        Random.Range(-explosionPositionVariance, explosionPositionVariance));
+
         if (PrefabAccessor.explosionPool.Count != 0)
         {
             explosion = PrefabAccessor.explosionPool[0];
@@ -41,7 +45,7 @@ public class PrefabAccessor : MonoBehaviour
         else
         {
             explosion = (Instantiate(prefabAccessor.explosionPrefab,
-                                     worldPosition,
+			                         worldPosition + positionVariance,
                                      Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Explosion>();
         }
         return explosion;

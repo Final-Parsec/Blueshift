@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
+	public int numberOfExplosions;
+	public float explosionPositionVariance;
 
     public int Health
     {
@@ -24,7 +27,15 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
-        Explosion explosion = PrefabAccessor.GetExplosion(transform.position);
-        explosion.Explode();
+		foreach (EnemyHealth child in GetComponentsInChildren<EnemyHealth>() as EnemyHealth[]){
+			if(child != this)
+				child.Health = 0;
+		}
+
+
+		for (int x = 0; x < numberOfExplosions; x++) {
+			Explosion explosion = PrefabAccessor.GetExplosion (transform.position, explosionPositionVariance);
+			explosion.Explode (x);
+		}
     }
 }

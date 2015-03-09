@@ -83,7 +83,11 @@ public abstract class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.gameObject.tag != TagsAndEnums.projectile && other.tag != TagsAndEnums.ignore && shooter != other.transform.root.gameObject.tag && armed)
+		if (other.transform.root.gameObject.tag != TagsAndEnums.projectile &&
+		    other.tag != TagsAndEnums.ignore &&
+		    other.tag != TagsAndEnums.shootingBox  &&
+		    shooter != other.transform.root.gameObject.tag &&
+		    armed)
         {
             hitObject = true;
             if (other.tag == TagsAndEnums.enemy)

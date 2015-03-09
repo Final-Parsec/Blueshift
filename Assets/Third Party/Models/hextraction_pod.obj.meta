@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: d3a6b2836bde37c4d8af44f5028893d0
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: glass_pod_mesh p_pod
     100002: //RootNode
@@ -29,6 +29,24 @@ ModelImporter:
     100046: tile_reference_tile_base_standard4
     100048: tile_reference_tile_base_standard5
     100050: tile_reference_tile_base_standard6
+    100052: glass_pod_mesh_p_pod
+    100054: pod_mesh_p_pod_body
+    100056: pod_mesh_p_pod_chasis
+    100058: pod_mesh_p_pod_left_balance
+    100060: pod_mesh_p_pod_left_balance_wheel
+    100062: pod_mesh_p_pod_left_fin
+    100064: pod_mesh_p_pod_left_fin_mount
+    100066: pod_mesh_p_pod_left_flakCannon
+    100068: pod_mesh_p_pod_left_plasmaWelder
+    100070: pod_mesh_p_pod_left_rocket
+    100072: pod_mesh_p_pod_right_balance
+    100074: pod_mesh_p_pod_right_balance_wheel
+    100076: pod_mesh_p_pod_right_fin
+    100078: pod_mesh_p_pod_right_fin_mount
+    100080: pod_mesh_p_pod_right_flakCannon
+    100082: pod_mesh_p_pod_right_plasmaWelder
+    100084: pod_mesh_p_pod_right_rocket
+    100086: pod_mesh_p_pod_thruster
     400000: glass_pod_mesh p_pod
     400002: //RootNode
     400004: pod_mesh_p_pod body
@@ -55,6 +73,24 @@ ModelImporter:
     400046: tile_reference_tile_base_standard4
     400048: tile_reference_tile_base_standard5
     400050: tile_reference_tile_base_standard6
+    400052: glass_pod_mesh_p_pod
+    400054: pod_mesh_p_pod_body
+    400056: pod_mesh_p_pod_chasis
+    400058: pod_mesh_p_pod_left_balance
+    400060: pod_mesh_p_pod_left_balance_wheel
+    400062: pod_mesh_p_pod_left_fin
+    400064: pod_mesh_p_pod_left_fin_mount
+    400066: pod_mesh_p_pod_left_flakCannon
+    400068: pod_mesh_p_pod_left_plasmaWelder
+    400070: pod_mesh_p_pod_left_rocket
+    400072: pod_mesh_p_pod_right_balance
+    400074: pod_mesh_p_pod_right_balance_wheel
+    400076: pod_mesh_p_pod_right_fin
+    400078: pod_mesh_p_pod_right_fin_mount
+    400080: pod_mesh_p_pod_right_flakCannon
+    400082: pod_mesh_p_pod_right_plasmaWelder
+    400084: pod_mesh_p_pod_right_rocket
+    400086: pod_mesh_p_pod_thruster
     2300000: glass_pod_mesh p_pod
     2300002: pod_mesh_p_pod body
     2300004: pod_mesh_p_pod chasis
@@ -80,6 +116,24 @@ ModelImporter:
     2300044: tile_reference_tile_base_standard4
     2300046: tile_reference_tile_base_standard5
     2300048: tile_reference_tile_base_standard6
+    2300050: glass_pod_mesh_p_pod
+    2300052: pod_mesh_p_pod_body
+    2300054: pod_mesh_p_pod_chasis
+    2300056: pod_mesh_p_pod_left_balance
+    2300058: pod_mesh_p_pod_left_balance_wheel
+    2300060: pod_mesh_p_pod_left_fin
+    2300062: pod_mesh_p_pod_left_fin_mount
+    2300064: pod_mesh_p_pod_left_flakCannon
+    2300066: pod_mesh_p_pod_left_plasmaWelder
+    2300068: pod_mesh_p_pod_left_rocket
+    2300070: pod_mesh_p_pod_right_balance
+    2300072: pod_mesh_p_pod_right_balance_wheel
+    2300074: pod_mesh_p_pod_right_fin
+    2300076: pod_mesh_p_pod_right_fin_mount
+    2300078: pod_mesh_p_pod_right_flakCannon
+    2300080: pod_mesh_p_pod_right_plasmaWelder
+    2300082: pod_mesh_p_pod_right_rocket
+    2300084: pod_mesh_p_pod_thruster
     3300000: glass_pod_mesh p_pod
     3300002: pod_mesh_p_pod body
     3300004: pod_mesh_p_pod chasis
@@ -105,6 +159,24 @@ ModelImporter:
     3300044: tile_reference_tile_base_standard4
     3300046: tile_reference_tile_base_standard5
     3300048: tile_reference_tile_base_standard6
+    3300050: glass_pod_mesh_p_pod
+    3300052: pod_mesh_p_pod_body
+    3300054: pod_mesh_p_pod_chasis
+    3300056: pod_mesh_p_pod_left_balance
+    3300058: pod_mesh_p_pod_left_balance_wheel
+    3300060: pod_mesh_p_pod_left_fin
+    3300062: pod_mesh_p_pod_left_fin_mount
+    3300064: pod_mesh_p_pod_left_flakCannon
+    3300066: pod_mesh_p_pod_left_plasmaWelder
+    3300068: pod_mesh_p_pod_left_rocket
+    3300070: pod_mesh_p_pod_right_balance
+    3300072: pod_mesh_p_pod_right_balance_wheel
+    3300074: pod_mesh_p_pod_right_fin
+    3300076: pod_mesh_p_pod_right_fin_mount
+    3300078: pod_mesh_p_pod_right_flakCannon
+    3300080: pod_mesh_p_pod_right_plasmaWelder
+    3300082: pod_mesh_p_pod_right_rocket
+    3300084: pod_mesh_p_pod_thruster
     4300000: glass_pod_mesh p_pod
     4300002: pod_mesh_p_pod body
     4300004: pod_mesh_p_pod chasis
@@ -130,6 +202,24 @@ ModelImporter:
     4300044: tile_reference_tile_base_standard4
     4300046: tile_reference_tile_base_standard5
     4300048: tile_reference_tile_base_standard6
+    4300050: glass_pod_mesh_p_pod
+    4300052: pod_mesh_p_pod_body
+    4300054: pod_mesh_p_pod_chasis
+    4300056: pod_mesh_p_pod_left_balance
+    4300058: pod_mesh_p_pod_left_balance_wheel
+    4300060: pod_mesh_p_pod_left_fin
+    4300062: pod_mesh_p_pod_left_fin_mount
+    4300064: pod_mesh_p_pod_left_flakCannon
+    4300066: pod_mesh_p_pod_left_plasmaWelder
+    4300068: pod_mesh_p_pod_left_rocket
+    4300070: pod_mesh_p_pod_right_balance
+    4300072: pod_mesh_p_pod_right_balance_wheel
+    4300074: pod_mesh_p_pod_right_fin
+    4300076: pod_mesh_p_pod_right_fin_mount
+    4300078: pod_mesh_p_pod_right_flakCannon
+    4300080: pod_mesh_p_pod_right_plasmaWelder
+    4300082: pod_mesh_p_pod_right_rocket
+    4300084: pod_mesh_p_pod_thruster
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -158,11 +248,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -185,3 +277,5 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

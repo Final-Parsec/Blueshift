@@ -8,7 +8,7 @@ public class ShipShooting : MonoBehaviour
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponentInParent<AudioSource>();
     }
     
     // Update is called once per frame
@@ -26,10 +26,10 @@ public class ShipShooting : MonoBehaviour
                     mainHit = hit;
                     break;
                 }
-                if (hit.collider.tag == TagsAndEnums.terrain)
+				if (hit.collider.tag == TagsAndEnums.terrain || hit.collider.tag == TagsAndEnums.shootingBox)
                     mainHit = hit;
-
             }
+
             Projectile proj = PrefabAccessor.GetProjectile(projectileType, transform.root.tag, transform.position);
             proj.transform.LookAt(mainHit.point);
             Vector3 aimVector = Vector3.Normalize(transform.position - mainHit.point);
