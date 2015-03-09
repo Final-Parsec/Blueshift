@@ -1,13 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Main Menu\MoonOrbit.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Cutscene\CutscenesIO.cs">
     <Files>
-      <File FileName="Assets\Scripts\Main Menu\MenuCamera.cs" Line="11" Column="32" />
-      <File FileName="Assets\Scripts\Main Menu\MoonOrbit.cs" Line="13" Column="56" />
-      <File FileName="Assets\Scripts\CheckpointBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PrefabAccessor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ShipMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TagsAndEnums.cs" Line="14" Column="6" />
+      <File FileName="Assets\Scripts\Cutscene\CutscenesIO.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cutscene\Cutscenes.cs" Line="89" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
