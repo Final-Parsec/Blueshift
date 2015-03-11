@@ -28,7 +28,7 @@ public class TouchBackFlying : CheckpointActivatedMovement
 					targetDir = transform.root.forward * -1;
 					speed = speedWhileTurning;
 				}
-			}
+			} 
 			else if(turningAround)
 			{
 				Quaternion startQuat = transform.root.rotation;
