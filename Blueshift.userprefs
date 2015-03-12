@@ -1,9 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Main Menu\LevelSelectionToggle.cs">
     <Files>
       <File FileName="Assets\Scripts\Main Menu\LevelSelectionToggle.cs" Line="29" Column="33" />
       <File FileName="Assets\Scripts\TagsAndEnums.cs" Line="10" Column="50" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ShipMovement.cs">
+    <Files>
+      <File FileName="Assets\Scripts\CheckpointBehavior.cs" Line="54" Column="41" />
+      <File FileName="Assets\Scripts\ShipMovement.cs" Line="66" Column="73" />
+      <File FileName="Assets\Scripts\ShipShooting.cs" Line="28" Column="18" />
+      <File FileName="Assets\Scripts\CameraMovement.cs" Line="34" Column="114" />
+      <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="52" Column="37" />
+      <File FileName="Assets\Scripts\Enemies\EnemyShooting.cs" Line="63" Column="23" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

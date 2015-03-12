@@ -3,7 +3,7 @@
 public class ShipMovement : MonoBehaviour
 {
     public static ShipMovement shipMovement;
-    private Transform ship;
+    public Transform bankingShip;
     public float bankSpeed;
     private Quaternion worldRotation;
 
@@ -16,7 +16,7 @@ public class ShipMovement : MonoBehaviour
         if (!pastTopScreenEdge)
         {
             transform.Translate(0, .5f, 0);
-            ship.rotation = Quaternion.Slerp(ship.rotation, Quaternion.Euler(worldRotation.eulerAngles.x - 45, worldRotation.eulerAngles.y, worldRotation.eulerAngles.z), (Time.fixedDeltaTime * bankSpeed));
+			bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(-20, 0, 0), (Time.fixedDeltaTime * bankSpeed));
         }
     }
     
@@ -29,7 +29,7 @@ public class ShipMovement : MonoBehaviour
         if (!pastLeftScreenEdge)
         {
             transform.Translate(-.5f, 0, 0);
-            ship.rotation = Quaternion.Slerp(ship.rotation, Quaternion.Euler(worldRotation.eulerAngles.x + 45, worldRotation.eulerAngles.y - 90, worldRotation.eulerAngles.z + 90), (Time.fixedDeltaTime * bankSpeed));
+			bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, -45, 0), (Time.fixedDeltaTime * bankSpeed));
         }
     }
 
@@ -42,7 +42,7 @@ public class ShipMovement : MonoBehaviour
         if (!pastRightScreenEdge)
         {
             transform.Translate(.5f, 0, 0);
-            ship.rotation = Quaternion.Slerp(ship.rotation, Quaternion.Euler(worldRotation.eulerAngles.x + 45, worldRotation.eulerAngles.y + 90, worldRotation.eulerAngles.z - 90), (Time.fixedDeltaTime * bankSpeed));
+			bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, 45, 0), (Time.fixedDeltaTime * bankSpeed));
         }
     }
 
@@ -56,21 +56,14 @@ public class ShipMovement : MonoBehaviour
         if (!pastBottomScreenEdge)
         {
             transform.Translate(0, -.5f, 0);
-            ship.rotation = Quaternion.Slerp(ship.rotation, Quaternion.Euler(worldRotation.eulerAngles.x + 10, worldRotation.eulerAngles.y, worldRotation.eulerAngles.z), (Time.fixedDeltaTime * bankSpeed));
+			bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(10, 0, 0), (Time.fixedDeltaTime * bankSpeed));
         }
     }
 
     void FixedUpdate()
     {
-        // find the proper worldRotation for this update
-        Quaternion localRotation = ship.localRotation;
-        ship.localRotation = Quaternion.Euler(new Vector3(270,0,0));
-        worldRotation = ship.rotation;
-        ship.localRotation = localRotation;
-
-        
         // normalize ship rotation
-        ship.rotation = Quaternion.Slerp(ship.rotation, worldRotation, (Time.fixedDeltaTime * bankSpeed));
+		bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, 0, 0), (Time.fixedDeltaTime * bankSpeed));
         //ship.localPosition = Vector3.zero;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) ||
@@ -98,13 +91,12 @@ public class ShipMovement : MonoBehaviour
 
     void RotateShip(float speed, Vector3 targetDirection)
     {
-        Vector3 newDirection = Vector3.RotateTowards(ship.forward, targetDirection, Time.fixedDeltaTime * speed, 0);
-        ship.rotation = Quaternion.LookRotation(newDirection);
+        Vector3 newDirection = Vector3.RotateTowards(bankingShip.forward, targetDirection, Time.fixedDeltaTime * speed, 0);
+        bankingShip.rotation = Quaternion.LookRotation(newDirection);
     }
 
     void Start()
     {
         shipMovement = this;
-        ship = transform.Find("ship");
     }
 }
