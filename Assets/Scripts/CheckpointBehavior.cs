@@ -13,6 +13,7 @@ public class CheckpointBehavior : MonoBehaviour
     public bool bossFight;
 	public List<EnemyHealth> bosses;
 	public List<EnemyHealth> destroyOnVictory;
+    public BossHealthBar bossHealthBar;
 
     void OnTriggerEnter(Collider col)
     {
@@ -48,10 +49,23 @@ public class CheckpointBehavior : MonoBehaviour
 
 	IEnumerator TestForVictory()
 	{
+        bossHealthBar.SwoopIn();
+
+        int sumMaxHealth = 0;
+        foreach(EnemyHealth boss in bosses)
+            sumMaxHealth += boss.MaxHealth;
+
 		while (bosses.Count > 0) 
 		{
-			bosses.RemoveAll(enemyHealth => enemyHealth == null);
-			yield return new WaitForSeconds(.2f);
+            bosses.RemoveAll(enemyHealth => enemyHealth == null);
+
+            int health = 0;
+            foreach(EnemyHealth boss in bosses)
+                health += boss.Health;
+            
+            bossHealthBar.UpdateHealthBar(health, sumMaxHealth);
+			
+			yield return new WaitForEndOfFrame();
 		}
 
 		CameraMovement.cameraMovement.fightingBoss = false;
@@ -61,6 +75,6 @@ public class CheckpointBehavior : MonoBehaviour
 		foreach (EnemyHealth enemyHealth in destroyOnVictory)
 			enemyHealth.Health = 0;
 
-
+        bossHealthBar.SwoopOut();
 	}
 }

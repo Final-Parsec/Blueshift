@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health;
+    public int _health;
 	public int numberOfExplosions;
 	public float explosionPositionVariance;
 	public Animator damageAnimator;
@@ -14,17 +14,18 @@ public class EnemyHealth : MonoBehaviour
 	private float blinkSpeed = .04f;
 	private Color blinkColor = Color.red;
 	private Color naturalColor;
+    public int MaxHealth{get; set;}
 
     public int Health
     {
         get
         {
-            return health;
+            return _health;
         }
         set
         {
-            health = value;
-            if (health <= 0)
+            _health = value;
+            if (_health <= 0)
             {
                 Death();
                 Destroy(gameObject);
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
 
 	void Start()
 	{
+        MaxHealth = _health;
 		meshRenderers = transform.root.GetComponentsInChildren<MeshRenderer>();
 		if(meshRenderers.Length > 0)
 			naturalColor = meshRenderers[0].material.color;
