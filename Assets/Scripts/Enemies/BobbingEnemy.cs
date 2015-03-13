@@ -16,7 +16,7 @@ public class BobbingEnemy : CheckpointActivatedMovement {
 			{
 				direction = -direction;
 				transform.root.position = new Vector3(transform.root.position.x,
-				                                      originalY + (deltaYDistance - .1f) * direction,
+				                                      originalY + (deltaYDistance - .0001f) * direction,
 				                                      transform.root.position.z);
 			}
 			transform.root.position = new Vector3(transform.root.position.x,
