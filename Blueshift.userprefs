@@ -1,15 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemies\BobbingEnemy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Projectiles\Projectile.cs">
     <Files>
-      <File FileName="Assets\Scripts\PrefabAccessor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemies\EnemyShooting.cs" Line="42" Column="16" />
-      <File FileName="Assets\Scripts\Enemies\effects\BossHealthBar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CheckpointBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Main Menu\MenuCamera.cs" Line="1" Column="1" />
-      <File FileName="Assets\Third Party\Dice Props Pack\Editor\ComponentCopier.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemies\BobbingEnemy.cs" Line="19" Column="77" />
+      <File FileName="Assets\Scripts\ShipHealth.cs" Line="48" Column="3" />
+      <File FileName="Assets\Scripts\Enemies\EnemyHealth.cs" Line="82" Column="6" />
+      <File FileName="Assets\Scripts\Projectiles\Projectile.cs" Line="97" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

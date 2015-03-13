@@ -90,10 +90,10 @@ public abstract class Projectile : MonoBehaviour
 		    armed)
         {
             hitObject = true;
-            if (other.tag == TagsAndEnums.enemy)
+			if (other.tag == TagsAndEnums.enemy || other.tag == TagsAndEnums.player)
             {
-                EnemyHealth enemy = other.gameObject.GetComponent<EnemyHealth>();
-                enemy.Health -= damage;
+				Health health = other.gameObject.GetComponent<Health>();
+ 				health.Health -= damage;
             }
         }
     }

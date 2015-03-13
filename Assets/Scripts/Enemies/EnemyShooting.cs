@@ -24,7 +24,7 @@ public class EnemyShooting : MonoBehaviour {
 
     IEnumerator Aim()
     {
-        while (target != null)
+		while (target != null && !target.GetComponent<ShipHealth>().IsDying)
         {
             Vector3 targetDirection = target.transform.position - rotatingObject.position;
             Vector3 newDirection = Vector3.RotateTowards(rotatingObject.forward, targetDirection, Time.deltaTime * aimRotationSpeed, 0);
@@ -62,7 +62,7 @@ public class EnemyShooting : MonoBehaviour {
 
     IEnumerator Fire()
     {
-        while (target != null)
+        while (target != null && !target.GetComponent<ShipHealth>().IsDying)
         {
             yield return new WaitForSeconds(shootSpeed);
             for (int x = 0; x < numProjectilesInBurst; x++)

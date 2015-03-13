@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour
     public Transform bankingShip;
     public float bankSpeed;
     private Quaternion worldRotation;
+	private ShipHealth shipHealth;
 
     /// <summary>
     /// Decelerates the ship and raises on y-axis. 
@@ -62,6 +63,9 @@ public class ShipMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+		if (shipHealth.IsDying)
+			return;
+
         // normalize ship rotation
 		bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, 0, 0), (Time.fixedDeltaTime * bankSpeed));
         //ship.localPosition = Vector3.zero;
@@ -98,5 +102,6 @@ public class ShipMovement : MonoBehaviour
     void Start()
     {
         shipMovement = this;
+		shipHealth = GetComponentInChildren<ShipHealth>();
     }
 }

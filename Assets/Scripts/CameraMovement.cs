@@ -9,6 +9,7 @@ public class CameraMovement : MonoBehaviour
     public List<Transform> waypoints;
     public float speed;
     public bool fightingBoss;
+	private ShipHealth shipHealth;
 
     public Vector3 GetMovementVector()
     {
@@ -45,6 +46,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         cameraMovement = this;
+		shipHealth = GetComponentInChildren<ShipHealth>();
 
         waypoints[0].LookAt(transform.position);
         for(int x = 1; x < waypoints.Count; x++)
@@ -57,7 +59,7 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // make the camera move
-        if (waypoints.Count != 0 && !fightingBoss)
+        if (waypoints.Count != 0 && !fightingBoss && !shipHealth.IsDying)
         {
             float step = speed * Time.deltaTime;
             Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);

@@ -5,15 +5,20 @@ public class ShipShooting : MonoBehaviour
 {
     public TagsAndEnums.ProjectileType projectileType;
     private AudioSource audioSource;
+	private ShipHealth shipHealth;
 
     void Start()
     {
         audioSource = GetComponentInParent<AudioSource>();
+		shipHealth = GetComponentInChildren<ShipHealth>();
     }
     
     // Update is called once per frame
     void Update()
     {
+		if (shipHealth.IsDying)
+			return;
+
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

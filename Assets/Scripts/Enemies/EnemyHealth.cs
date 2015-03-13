@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, Health
 {
     public int _health;
 	public int numberOfExplosions;
 	public float explosionPositionVariance;
-	public Animator damageAnimator;
 
+	private Animator animator;
 	private MeshRenderer[] meshRenderers;
 	private float blinkTime = .3f;
 	private float blinkSpeed = .04f;
@@ -41,6 +41,7 @@ public class EnemyHealth : MonoBehaviour
 	{
         MaxHealth = _health;
 		meshRenderers = transform.root.GetComponentsInChildren<MeshRenderer>();
+		animator = GetComponent<Animator>();
 		if(meshRenderers.Length > 0)
 			naturalColor = meshRenderers[0].material.color;
 	}
@@ -50,8 +51,8 @@ public class EnemyHealth : MonoBehaviour
 		float startTime = Time.time;
 		int counter = 1;
 
-		if (damageAnimator != null)
-			damageAnimator.SetTrigger("damage");
+		if (animator != null)
+			animator.SetTrigger("damage");
 
 		while(Time.time - startTime < blinkTime)
 		{
@@ -77,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
 
 		for (int x = 0; x < numberOfExplosions; x++) {
 			Explosion explosion = PrefabAccessor.GetExplosion (transform.position, explosionPositionVariance);
-			explosion.Explode (x);
+			explosion.Explode (0);
 		}
     }
 
