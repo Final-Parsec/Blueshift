@@ -80,11 +80,6 @@ public class ShipHealth : MonoBehaviour, Health {
 			explosion.Explode (0);
 		}
 	}
-	
-	public void Restart()
-	{
-		Application.LoadLevel(Application.loadedLevel);
-	}
 
 	void AfterDeathAnimation()
 	{

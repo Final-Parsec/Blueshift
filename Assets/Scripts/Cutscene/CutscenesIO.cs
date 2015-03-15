@@ -17,9 +17,9 @@ public class CutscenesIO
 	/// <param name="filename">Filename for script text file.</param>
 	public CutscenesIO (string filename) 
 	{
-		StreamReader reader = File.OpenText(@"Assets\Cutscenes\Dialogue\" + filename + ".txt");
-		string text = reader.ReadToEnd ();
-		lines = text.Split('\n');
+		var scriptAsset = Resources.Load(@"Dialogue/" + filename) as TextAsset;
+		var scriptContent = scriptAsset == null ? string.Empty : scriptAsset.text;
+		lines = scriptContent.Split('\n');
 	}
 
 	/// <summary>
