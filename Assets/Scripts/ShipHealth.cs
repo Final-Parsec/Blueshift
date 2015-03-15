@@ -6,8 +6,10 @@ public class ShipHealth : MonoBehaviour, Health {
 	public int MaxHealth{get; set;}
     public HealthBar healthBar;
 
+	private bool isDead = false;
 	private bool isDying = false;
-
+	private GameObject deathModal;
+	
 	public bool IsDying
 	{
 		get
@@ -29,19 +31,20 @@ public class ShipHealth : MonoBehaviour, Health {
 		}
 		set
 		{
-
 			if(isDying)
+			{
 				return;
+			}
+				
+			_health = value;
 
 			if (_health <= 0)
 			{
                 _health = 0;
 				Death();
-				//Destroy(gameObject);
 			}
 			else
 			{
-                _health = value;
 				AnimateHit();
 			}
             healthBar.UpdateHealthBar(_health, MaxHealth);
@@ -51,6 +54,8 @@ public class ShipHealth : MonoBehaviour, Health {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
+		deathModal = GameObject.Find("DeathModal");
+		deathModal.SetActive(false);
         MaxHealth = Health;
 	}
 	
@@ -64,19 +69,39 @@ public class ShipHealth : MonoBehaviour, Health {
 		isDying = true;
 		animator.SetTrigger("death");
 	}
+	
+	void Explode()
+	{
+		if (!isDead)
+		{
+			isDead = true;
+		
+			Explosion explosion = PrefabAccessor.GetExplosion (transform.position, 0);
+			explosion.Explode (0);
+		}
+	}
+	
+	public void Restart()
+	{
+		Application.LoadLevel(Application.loadedLevel);
+	}
+	
+	public void Quit()
+	{
+		Application.LoadLevel("Main Menu");
+	}
 
 	void AfterDeathAnimation()
 	{
-		Explosion explosion = PrefabAccessor.GetExplosion (transform.position, 0);
-		explosion.Explode (0);
+		Explode();
+		deathModal.SetActive(true);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (IsDying && other.tag == TagsAndEnums.terrain) 
 		{
-			Explosion explosion = PrefabAccessor.GetExplosion (transform.position, 0);
-			explosion.Explode (0);
+			Explode();
 		}
 	}
 }

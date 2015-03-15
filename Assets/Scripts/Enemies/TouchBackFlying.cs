@@ -14,7 +14,7 @@ public class TouchBackFlying : CheckpointActivatedMovement
 
 	protected override IEnumerator Active()
 	{   
-		float lastRun = 0;
+		float lastRun = Time.time;
 		Vector3 targetDir = Vector3.zero;
 		while (TagsAndEnums.GetSqrDistance(transform.root.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
 		{

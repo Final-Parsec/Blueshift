@@ -9,19 +9,21 @@ public class PrefabAccessor : MonoBehaviour
 
     public static Projectile GetProjectile(TagsAndEnums.ProjectileType projectileType, string shooter,  Vector3 spawnPosition)
     {
-        Projectile proj;
-        if (PrefabAccessor.projectilePool.ContainsKey(projectileType) && PrefabAccessor.projectilePool [projectileType].Count != 0)
+        Projectile proj = null;
+		if (PrefabAccessor.projectilePool.ContainsKey(projectileType) && PrefabAccessor.projectilePool [projectileType].Count != 0)
         {
             proj = PrefabAccessor.projectilePool [projectileType] [0];
             PrefabAccessor.projectilePool [projectileType].RemoveAt(0);
-            proj.transform.position = spawnPosition;
-            
-        } else
+        }
+        
+		if (proj == null)
         {
             proj = (Instantiate(PrefabAccessor.prefabAccessor.projectilePrefabs [(int)projectileType],
                                 spawnPosition,
                                 Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Projectile>();
         }
+        
+		proj.transform.position = spawnPosition;
         proj.transform.LookAt(ShipMovement.shipMovement.transform.position);
         proj.armed = true;
         proj.shooter = shooter;
@@ -30,7 +32,7 @@ public class PrefabAccessor : MonoBehaviour
 
 	public static Explosion GetExplosion(Vector3 worldPosition, float explosionPositionVariance)
     {
-        Explosion explosion;
+        Explosion explosion = null;
 		Vector3 positionVariance = new Vector3 (Random.Range(-explosionPositionVariance, explosionPositionVariance),
 		                                        Random.Range(-explosionPositionVariance, explosionPositionVariance),
 		                                        Random.Range(-explosionPositionVariance, explosionPositionVariance));
@@ -39,15 +41,16 @@ public class PrefabAccessor : MonoBehaviour
         {
             explosion = PrefabAccessor.explosionPool[0];
             PrefabAccessor.explosionPool.RemoveAt(0);
-            explosion.transform.position = worldPosition;
-
         }
-        else
+        
+        if (explosion == null)
         {
             explosion = (Instantiate(prefabAccessor.explosionPrefab,
 			                         worldPosition + positionVariance,
                                      Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Explosion>();
         }
+        
+		explosion.transform.position = worldPosition;
         return explosion;
     }
 

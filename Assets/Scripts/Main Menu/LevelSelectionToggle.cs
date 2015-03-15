@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelSelectionToggle : MonoBehaviour
 {
 	private GameObject canvas;
+	private GameObject levelSelectionCanvas;
 	private GameObject[] missionStartButtons;
 
 	/// <summary>
@@ -12,6 +13,7 @@ public class LevelSelectionToggle : MonoBehaviour
 	void Start()
 	{
 		canvas = GameObject.Find("Canvas");
+		levelSelectionCanvas = GameObject.Find("Level Selection Canvas");
 		missionStartButtons = GameObject.FindGameObjectsWithTag(TagsAndEnums.levelSelector);
 	}
 
@@ -23,11 +25,7 @@ public class LevelSelectionToggle : MonoBehaviour
 		if (Input.anyKey)
 		{
 			canvas.SetActive(false);
-			
-			foreach (var missionStartButton in missionStartButtons)
-			{
-				missionStartButton.SetActive(true);
-			}
+			levelSelectionCanvas.SetActive(true);
 		}
 	}
 }
