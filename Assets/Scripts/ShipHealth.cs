@@ -85,11 +85,6 @@ public class ShipHealth : MonoBehaviour, Health {
 	{
 		Application.LoadLevel(Application.loadedLevel);
 	}
-	
-	public void Quit()
-	{
-		Application.LoadLevel("Main Menu");
-	}
 
 	void AfterDeathAnimation()
 	{
