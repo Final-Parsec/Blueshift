@@ -85,6 +85,7 @@ public class ShipHealth : MonoBehaviour, Health {
 	{
 		Explode();
 		deathModal.SetActive(true);
+        deathModal.GetComponent<Animator>().SetTrigger("fadein");
 	}
 
 	void OnTriggerEnter(Collider other)
