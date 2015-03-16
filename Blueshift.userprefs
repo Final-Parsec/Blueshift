@@ -6,13 +6,14 @@
       <File FileName="Assets\Scripts\ShipHealth.cs" Line="82" Column="3" />
       <File FileName="Assets\Scripts\PrefabAccessor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SceneLoader.cs" Line="7" Column="50" />
-      <File FileName="Assets\Scripts\Cutscene\Cutscenes.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Cutscene\CutscenesIO.cs" Line="20" Column="57" />
+      <File FileName="Assets\Scripts\Cutscene\Cutscenes.cs" Line="122" Column="49" />
+      <File FileName="Assets\Scripts\Cutscene\CutscenesIO.cs" Line="18" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="H:\FinalParsecGitRepository\Blueshift\Assets\Scripts\HealthBar.cs" line="21" />
+      <Breakpoint file="C:\Code\Blueshift\Assets\Scripts\Cutscene\CutscenesIO.cs" line="22" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
