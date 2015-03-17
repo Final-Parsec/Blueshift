@@ -6,7 +6,7 @@ public class CheckpointBehavior : MonoBehaviour
 {
 
     public bool loadScene;
-    public string sceneToLoad;
+    public int sceneToLoad;
     public bool cameraWaypoint;
     public bool triggerEnemies;
     public List<CheckpointActivatedMovement> enemiesToTrigger;
@@ -20,9 +20,9 @@ public class CheckpointBehavior : MonoBehaviour
         if (col.tag != "playerShip")
             return;
 
-        if (loadScene && !string.IsNullOrEmpty(sceneToLoad))
+        if (loadScene)
         {
-            Application.LoadLevel(sceneToLoad);
+			SceneLoader.LoadCutscene(sceneToLoad);
             loadScene = false;
         }
 
