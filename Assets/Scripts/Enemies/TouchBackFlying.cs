@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TouchBackFlying : CheckpointActivatedMovement 
@@ -38,7 +38,9 @@ public class TouchBackFlying : CheckpointActivatedMovement
 				{
 					turningAround = false;
 					speed = postTurnSpeed;
-					sphereCollider.enabled = true; // fire my lazars
+                    if(sphereColliders != null)
+                        foreach(SphereCollider sc in sphereColliders)
+                            sc.enabled = true;
 				}
 			}
 
@@ -59,7 +61,9 @@ public class TouchBackFlying : CheckpointActivatedMovement
 	{
 		foreach (MeshRenderer meshrenderer in transform.root.GetComponentsInChildren<MeshRenderer>())
 			meshrenderer.enabled = true;
-		boxCollider.enabled = true;
+        if(boxColliders != null)
+            foreach(BoxCollider bc in boxColliders)
+                bc.enabled = true;
 		//sphereCollider.enabled = true;
 		StartCoroutine(Active());
 	}

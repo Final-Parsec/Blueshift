@@ -73,7 +73,7 @@ public class CheckpointBehavior : MonoBehaviour
 		yield return new WaitForSeconds(.4f);
 
 		foreach (EnemyHealth enemyHealth in destroyOnVictory)
-			enemyHealth.Health = 0;
+            enemyHealth.Death();
 
         bossHealthBar.SwoopOut();
 	}

@@ -69,7 +69,7 @@ public class ShipMovement : MonoBehaviour
         // normalize ship rotation
 		bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, 0, 0), (Time.fixedDeltaTime * bankSpeed));
         //ship.localPosition = Vector3.zero;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //GetComponentInChildren<Rigidbody>().velocity = Vector3.zero;
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) ||
             (Input.acceleration.y > -.25 && Input.acceleration.y != 0))
         {

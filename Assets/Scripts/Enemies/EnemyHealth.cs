@@ -7,13 +7,14 @@ public class EnemyHealth : MonoBehaviour, Health
     public int _health;
 	public int numberOfExplosions;
 	public float explosionPositionVariance;
+    public float blinkTime = .3f;
+    public bool godMode;
 
 	private Animator animator;
 	private MeshRenderer[] meshRenderers;
-	private float blinkTime = .3f;
 	private float blinkSpeed = .04f;
 	private Color blinkColor = Color.red;
-	private Color naturalColor;
+	private Color[] naturalColors;
     public int MaxHealth{get; set;}
 
     public int Health
@@ -24,11 +25,13 @@ public class EnemyHealth : MonoBehaviour, Health
         }
         set
         {
+            if(godMode)
+                return;
+
             _health = value;
             if (_health <= 0)
             {
                 Death();
-                Destroy(gameObject);
             }
 			else
 			{
@@ -40,10 +43,11 @@ public class EnemyHealth : MonoBehaviour, Health
 	void Start()
 	{
         MaxHealth = _health;
-		meshRenderers = transform.root.GetComponentsInChildren<MeshRenderer>();
+		meshRenderers = transform.GetComponentsInChildren<MeshRenderer>();
 		animator = GetComponent<Animator>();
-		if(meshRenderers.Length > 0)
-			naturalColor = meshRenderers[0].material.color;
+        naturalColors = new Color[meshRenderers.Length];
+        for(int x = 0; x < meshRenderers.Length; x++)
+            naturalColors[x] = meshRenderers[x].material.color;
 	}
 
 	IEnumerator AnimateHit()
@@ -59,32 +63,40 @@ public class EnemyHealth : MonoBehaviour, Health
 			if (counter % 2 == 1)
 				SetColorForMeshs(blinkColor);
 			else
-				SetColorForMeshs(naturalColor);
+				SetColorsForMeshs(naturalColors);
 
 			counter++;
 			yield return new WaitForSeconds(blinkSpeed);
 		}
 
-		SetColorForMeshs(naturalColor);
+		SetColorsForMeshs(naturalColors);
 	}
 
-    void Death()
+    public void Death()
     {
 		foreach (EnemyHealth child in GetComponentsInChildren<EnemyHealth>() as EnemyHealth[]){
 			if(child != this)
-				child.Health = 0;
+				child.Death();
 		}
 
 
 		for (int x = 0; x < numberOfExplosions; x++) {
 			Explosion explosion = PrefabAccessor.GetExplosion (transform.position, explosionPositionVariance);
-			explosion.Explode (0);
+			explosion.Explode (x);
 		}
+
+        Destroy(gameObject);
     }
 
-	void SetColorForMeshs(Color color)
+	void SetColorsForMeshs(Color[] colors)
 	{
-		foreach (MeshRenderer mr in meshRenderers)
-			mr.material.color = color;
+        for(int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = colors[x];
 	}
+
+    void SetColorForMeshs(Color color)
+    {
+        for(int x = 0; x < meshRenderers.Length; x++)
+            meshRenderers[x].material.color = color;
+    }
 }

@@ -50,7 +50,7 @@ public class PrefabAccessor : MonoBehaviour
                                      Quaternion.Euler(Vector3.zero)) as GameObject).GetComponent<Explosion>();
         }
         
-		explosion.transform.position = worldPosition;
+        explosion.transform.position = worldPosition + positionVariance;
         return explosion;
     }
 
