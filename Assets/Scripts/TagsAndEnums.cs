@@ -19,7 +19,8 @@ public class TagsAndEnums : MonoBehaviour {
     {
         missile,
 		plasmaSphere,
-		homerMissile
+		homerMissile,
+        speedMissile
     };
 
 	public enum AimingDirection
