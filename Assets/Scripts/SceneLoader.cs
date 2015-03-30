@@ -15,6 +15,13 @@ public class SceneLoader : MonoBehaviour {
 	
 	public static void LoadCutscene(int i)
 	{
+		// Special handling for this as it indicates the end of the game.
+		if (i == -1)
+		{
+			Application.LoadLevel("Final Cutscene");
+			return;
+		}
+	
 		if (i > PersistentSettings.Current.highestUnlockedLevel)
 		{	
 			PersistentSettings.Current.highestUnlockedLevel = i;
