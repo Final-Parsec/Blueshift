@@ -1,7 +1,22 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
-public class ShipHealth : MonoBehaviour, Health {
+public class ShipHealth : MonoBehaviour, Health
+{
+	private static ShipHealth instance;
+	public static ShipHealth Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				throw new InvalidOperationException("Bruh?");
+			}
+			return instance;
+		}
+	}
+	
 	private Animator animator;
 	public int MaxHealth{get; set;}
     public HealthBar healthBar;
@@ -58,6 +73,7 @@ public class ShipHealth : MonoBehaviour, Health {
 		deathModal = GameObject.Find("DeathModal");
 		deathModal.SetActive(false);
         MaxHealth = Health;
+        instance = this;
 	}
 	
 	void AnimateHit()
@@ -94,6 +110,16 @@ public class ShipHealth : MonoBehaviour, Health {
 		if (IsDying && other.tag == TagsAndEnums.terrain) 
 		{
 			Explode();
+		}
+	}
+	
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log ("Move the poop, says Matt.");
+		if (collision.collider.tag == TagsAndEnums.terrain)
+		{
+			this.Health -= (int)(this.Health * .1f);
+			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
 		}
 	}
 }

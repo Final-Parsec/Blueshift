@@ -11,7 +11,7 @@ public class ShipMovement : MonoBehaviour
     /// <summary>
     /// Decelerates the ship and raises on y-axis. 
     /// </summary>
-    void Ascend()
+    public void Ascend()
     {
         bool pastTopScreenEdge = Camera.main.WorldToScreenPoint(transform.position).y > Screen.height;
         if (!pastTopScreenEdge)
