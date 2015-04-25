@@ -26,15 +26,31 @@ public class HealthBar : MonoBehaviour {
     
     IEnumerator MoveBar(float targetHeight)
     {
-        while (rectTransform.sizeDelta.y < targetHeight)
+        if (targetHeight > rectTransform.sizeDelta.y)
         {
-            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y + 1);
-            
-            rectTransform.localPosition = new Vector3(rectTransform.localPosition.x,
-                                                      startingYPosition + ((startingHeight - rectTransform.sizeDelta.y) / 2.0f),
-                                                      rectTransform.localPosition.z);
-            
-            yield return new WaitForEndOfFrame();
+            while (rectTransform.sizeDelta.y < targetHeight)
+            {
+                rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y + 1);
+                
+                rectTransform.localPosition = new Vector3(rectTransform.localPosition.x,
+                                                          startingYPosition + ((startingHeight - rectTransform.sizeDelta.y) / 2.0f),
+                                                          rectTransform.localPosition.z);
+                
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            while (rectTransform.sizeDelta.y > targetHeight)
+            {
+                rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, rectTransform.sizeDelta.y - 1);
+                
+                rectTransform.localPosition = new Vector3(rectTransform.localPosition.x,
+                                                          startingYPosition + (startingHeight - rectTransform.sizeDelta.y) / 2.0f,
+                                                          rectTransform.localPosition.z);
+                
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }

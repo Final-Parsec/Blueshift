@@ -50,19 +50,26 @@ public class ShipHealth : MonoBehaviour, Health
 			{
 				return;
 			}
-				
-			_health = value;
 
-			if (_health <= 0)
-			{
-                _health = 0;
-				Death();
-                GetComponent<BoxCollider>().isTrigger = true;
-			}
-			else
-			{
-				AnimateHit();
-			}
+            if (value < _health)
+            {
+                if (value <= 0)
+    			{
+                    _health = 0;
+    				Death();
+                    GetComponent<BoxCollider>().isTrigger = true;
+    			}
+    			else
+    			{
+    				AnimateHit();
+    			}
+            }
+            else if(value > MaxHealth)
+            {
+                value = MaxHealth;
+            }
+
+            _health = value;
             healthBar.UpdateHealthBar(_health, MaxHealth);
 		}
 	}
@@ -103,23 +110,5 @@ public class ShipHealth : MonoBehaviour, Health
 		Explode();
 		deathModal.SetActive(true);
         deathModal.GetComponent<Animator>().SetTrigger("fadein");
-	}
-
-	void OnTriggerEnter(Collider other)
-	{
-		if (IsDying && other.tag == TagsAndEnums.terrain) 
-		{
-			Explode();
-		}
-	}
-	
-	void OnCollisionEnter(Collision collision)
-	{
-		Debug.Log ("Move the poop, says Matt.");
-		if (collision.collider.tag == TagsAndEnums.terrain)
-		{
-			this.Health -= (int)(this.Health * .1f);
-			this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-		}
 	}
 }
