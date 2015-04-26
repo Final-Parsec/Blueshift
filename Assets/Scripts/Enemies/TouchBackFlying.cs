@@ -32,7 +32,7 @@ public class TouchBackFlying : CheckpointActivatedMovement
 			else if(turningAround)
 			{
 				Quaternion startQuat = transform.root.rotation;
-				Vector3 newDirection = Vector3.RotateTowards(transform.root.forward, targetDir, Time.deltaTime * rotateSpeed, 0);
+				Vector3 newDirection = Vector3.RotateTowards(transform.root.forward, targetDir, (Time.time - lastRun) * rotateSpeed, 0);
 				transform.root.rotation = Quaternion.LookRotation(newDirection);
 				if(startQuat.eulerAngles == transform.root.rotation.eulerAngles)
 				{

@@ -19,6 +19,7 @@ public class HomerMissile : Projectile {
 			             Random.Range(-homingError,homingError),
 			             Random.Range(-homingError,homingError));
 
+		float lastRun = Time.time;
 		float startTime = Time.time;
 		Vector3 origin = transform.position;
 		while (TagsAndEnums.GetSqrDistance(origin, transform.position) < selfDestructRange*selfDestructRange && !hitObject)
@@ -26,16 +27,17 @@ public class HomerMissile : Projectile {
 			if (startTime + homingDuration > Time.time)
 			{
 				Vector3 targetDirection = targetPositionWithError - transform.root.position;
-				Vector3 newDirection = Vector3.RotateTowards(transform.root.forward, targetDirection, Time.deltaTime * homingSpeed, 0);
+				Vector3 newDirection = Vector3.RotateTowards(transform.root.forward, targetDirection, (Time.time - lastRun) * homingSpeed, 0);
 				transform.root.rotation = Quaternion.LookRotation(newDirection);
 			}
 
-			transform.Rotate(0,0,Time.deltaTime*360);
+			transform.Rotate(0,0,(Time.time - lastRun)*360);
 
-			float step = (speed) * Time.deltaTime;
+			float step = (speed) * (Time.time - lastRun);
 			// update the position
 			transform.position = transform.position - (transform.forward * -1 * step);
 
+			lastRun = Time.time;
 			yield return new WaitForEndOfFrame();
 		}
 		armed = false;

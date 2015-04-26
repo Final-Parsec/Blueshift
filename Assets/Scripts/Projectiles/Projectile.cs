@@ -59,13 +59,16 @@ public abstract class Projectile : MonoBehaviour
     IEnumerator InterceptCoroutine(Vector3 moveVector, float reletiveSpeed)
     {
         Vector3 origin = transform.position;
+		float lastRun = Time.time;
         while (TagsAndEnums.GetSqrDistance(origin, transform.position) < selfDestructRange*selfDestructRange && !hitObject)
         {
-            float step = (speed+reletiveSpeed) * Time.deltaTime;
+			float step = (speed+reletiveSpeed) * (Time.time - lastRun);
             // update the position
             transform.position = new Vector3(transform.position.x - moveVector.x * step,
                                               transform.position.y - moveVector.y * step,
                                               transform.position.z - moveVector.z * step);
+
+			lastRun = Time.time;
             yield return new WaitForEndOfFrame();
         }
         armed = false;
