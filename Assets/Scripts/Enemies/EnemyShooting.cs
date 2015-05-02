@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EnemyShooting : MonoBehaviour {
 	
     //  Shooting
+	public Transform shootFromPerspectiveOf;
     public TagsAndEnums.ProjectileType projectileType;
     public List<Transform> muzzlePoints;
     public bool shootFromEveryMuzzle;
@@ -88,7 +89,7 @@ public class EnemyShooting : MonoBehaviour {
         {
             Projectile proj = PrefabAccessor.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
 
-            Vector3 aimVector = transform.forward * -1;
+			Vector3 aimVector = shootFromPerspectiveOf.forward * -1;
 			proj.transform.rotation = Quaternion.LookRotation(aimVector);
 
             proj.Intercept(aimVector, 0);
@@ -117,4 +118,10 @@ public class EnemyShooting : MonoBehaviour {
             count++;
         } while(shootFromEveryMuzzle && count < muzzlePoints.Count);
     }
+
+	void Start()
+	{
+		if (shootFromPerspectiveOf == null)
+			shootFromPerspectiveOf = transform;
+	}
 }
