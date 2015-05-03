@@ -9,12 +9,15 @@ public class SceneLoader : MonoBehaviour {
 
 	public void ReloadCurrentScene()
 	{
+		Time.timeScale = 1f;
 		SaveLoad.Save();
 		Application.LoadLevel(Application.loadedLevel);
 	}
 	
 	public static void LoadCutscene(int i)
 	{
+		Time.timeScale = 1f;
+	
 		// Special handling for this as it indicates the end of the game.
 		if (i == -1)
 		{
@@ -32,6 +35,8 @@ public class SceneLoader : MonoBehaviour {
 	
 	public void StartCutscene(int i)
 	{
+		Time.timeScale = 1f;
+	
 		if (i > PersistentSettings.Current.highestUnlockedLevel)
 		{	
 			PersistentSettings.Current.highestUnlockedLevel = i;
@@ -42,12 +47,16 @@ public class SceneLoader : MonoBehaviour {
 	
 	public void StartMission(int i)
 	{
+		Time.timeScale = 1f;
+	
 		SaveLoad.Save();
 		Application.LoadLevel("Mission " + i);
 	}
 	
 	public void BackToMainMenu()
 	{
+		Time.timeScale = 1f;
+	
 		SaveLoad.Save();
 		Application.LoadLevel("Main Menu");
 	}
