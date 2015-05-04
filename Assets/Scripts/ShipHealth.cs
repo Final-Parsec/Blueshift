@@ -108,7 +108,7 @@ public class ShipHealth : MonoBehaviour, Health
 	void AfterDeathAnimation()
 	{
 		Explode();
-		ShipShooting.Instance.pauseMenu.SetActive(false);
+		PauseMenu.Instance.TurnOff();
 		deathModal.SetActive(true);
         deathModal.GetComponent<Animator>().SetTrigger("fadein");
 	}

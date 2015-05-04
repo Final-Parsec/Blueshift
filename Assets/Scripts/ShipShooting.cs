@@ -37,28 +37,12 @@ public class ShipShooting : MonoBehaviour
 	private float lastShootTime = 0;
     private AudioSource audioSource;
 	private ShipHealth shipHealth;
-	public GameObject pauseMenu;
 
     void Start()
     {
         audioSource = GetComponentInParent<AudioSource>();
 		shipHealth = GetComponentInChildren<ShipHealth>();
 		instance = this;
-		this.pauseMenu = GameObject.Find("PauseMenu");
-		this.pauseMenu.SetActive(false);
-    }
-    
-    public void PauseToggle()
-    {
-    	this.pauseMenu.SetActive(!this.pauseMenu.activeSelf);
-		if (this.pauseMenu.activeSelf)
-		{
-			Time.timeScale = 0f;
-		}
-		else
-		{
-			Time.timeScale = 1f;
-		}
     }
     
     // Update is called once per frame
@@ -66,11 +50,6 @@ public class ShipShooting : MonoBehaviour
     {
 		if (shipHealth.IsDying)
 			return;
-			
-		if (Input.GetKeyUp(KeyCode.Escape))
-		{
-			this.PauseToggle();
-		}
 
 		if (Input.GetMouseButton(0) && Time.time > lastShootTime + shootSpeed && Time.timeScale != 0f)
         {
