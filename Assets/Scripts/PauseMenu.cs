@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 	
 	private GameObject pauseEnableButton;
 	private GameObject pauseUi;
+    int resumeCount = 0;
 	
 	public static PauseMenu Instance
 	{
@@ -20,7 +21,7 @@ public class PauseMenu : MonoBehaviour
 			return instance;
 		}
 	}
-	
+
 	public void PauseToggle()
 	{
 		this.pauseUi.SetActive(!this.pauseUi.activeSelf);
@@ -32,6 +33,7 @@ public class PauseMenu : MonoBehaviour
 		else
 		{
 			Time.timeScale = 1f;
+            resumeCount = 0;
 		}
 	}
 	
@@ -56,8 +58,10 @@ public class PauseMenu : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
-		if ((this.pauseUi.activeSelf && Input.GetMouseButtonUp(0)) ||
-			Input.GetKeyUp(KeyCode.Escape))
+        if((this.pauseUi.activeSelf && Input.GetMouseButtonUp(0)))
+            resumeCount++;
+
+        if ( resumeCount == 2 || Input.GetKeyUp(KeyCode.Escape))
 		{
 			this.PauseToggle();
 		}
