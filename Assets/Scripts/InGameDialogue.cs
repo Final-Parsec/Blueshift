@@ -23,7 +23,6 @@ public class InGameDialogue : MonoBehaviour
     /// </summary>
     public IEnumerator SayDialogue(string toSay)
     {
-        Debug.Log(toSay);
         var coroutineCharacterCount = 0;
 
         // Fade In
@@ -31,7 +30,7 @@ public class InGameDialogue : MonoBehaviour
         while (this.background.color.a <= .39f)
         {
             var current = this.background.color;
-            this.background.color = new Color(current.r, current.g, current.b, current.a + .01f);
+            this.background.color = new Color(current.r, current.g, current.b, current.a + .02f);
             yield return new WaitForEndOfFrame();
         }
         
@@ -68,7 +67,7 @@ public class InGameDialogue : MonoBehaviour
         while (this.background.color.a >= 0f)
         {
             var current = this.background.color;
-            this.background.color = new Color(current.r, current.g, current.b, current.a - .01f);
+            this.background.color = new Color(current.r, current.g, current.b, current.a - .02f);
             yield return new WaitForEndOfFrame();
         }
     }
