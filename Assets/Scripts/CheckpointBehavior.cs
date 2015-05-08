@@ -1,80 +1,90 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CheckpointBehavior : MonoBehaviour
 {
-
+    public List<EnemyHealth> bosses;
+    public bool bossFight;
+    public BossHealthBar bossHealthBar;
+    public bool cameraWaypoint;
+    public List<EnemyHealth> destroyOnVictory;
+    public string dialogue;
+    public List<CheckpointActivatedMovement> enemiesToTrigger;
     public bool loadScene;
     public int sceneToLoad;
-    public bool cameraWaypoint;
     public bool triggerEnemies;
-    public List<CheckpointActivatedMovement> enemiesToTrigger;
-    public bool bossFight;
-	public List<EnemyHealth> bosses;
-	public List<EnemyHealth> destroyOnVictory;
-    public BossHealthBar bossHealthBar;
 
-    void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.tag != "playerShip")
-            return;
-
-        if (loadScene)
         {
-			SceneLoader.LoadCutscene(sceneToLoad);
-            loadScene = false;
+            return;
         }
 
-        if (cameraWaypoint)
+        if (!string.IsNullOrEmpty(this.dialogue))
+        {
+            var inGameDialogue = InGameDialogue.Instance;
+            inGameDialogue.StartCoroutine(inGameDialogue.SayDialogue(this.dialogue));
+        }
+
+        if (this.loadScene)
+        {
+            SceneLoader.LoadCutscene(this.sceneToLoad);
+            this.loadScene = false;
+        }
+
+        if (this.cameraWaypoint)
         {
             CameraMovement.cameraMovement.NextWaypoint();
-            cameraWaypoint = false;
+            this.cameraWaypoint = false;
         }
 
-        if (triggerEnemies)
+        if (this.triggerEnemies)
         {
-            foreach (CheckpointActivatedMovement enemy in enemiesToTrigger)
+            foreach (var enemy in this.enemiesToTrigger)
+            {
                 enemy.Trigger();
-            triggerEnemies = false;
+            }
+            this.triggerEnemies = false;
         }
 
-        if (bossFight)
+        if (this.bossFight)
         {
             CameraMovement.cameraMovement.fightingBoss = true;
-            bossFight = false;
-			StartCoroutine(TestForVictory());
+            this.bossFight = false;
+            this.StartCoroutine(this.TestForVictory());
         }
     }
 
-	IEnumerator TestForVictory()
-	{
-        bossHealthBar.SwoopIn();
+    private IEnumerator TestForVictory()
+    {
+        this.bossHealthBar.SwoopIn();
 
-        int sumMaxHealth = 0;
-        foreach(EnemyHealth boss in bosses)
+        var sumMaxHealth = 0;
+        foreach (var boss in this.bosses)
             sumMaxHealth += boss.MaxHealth;
 
-		while (bosses.Count > 0) 
-		{
-            bosses.RemoveAll(enemyHealth => enemyHealth == null);
+        while (this.bosses.Count > 0)
+        {
+            this.bosses.RemoveAll(enemyHealth => enemyHealth == null);
 
-            int health = 0;
-            foreach(EnemyHealth boss in bosses)
+            var health = 0;
+            foreach (var boss in this.bosses)
                 health += boss.Health;
-            
-            bossHealthBar.UpdateHealthBar(health, sumMaxHealth);
-			
-			yield return new WaitForEndOfFrame();
-		}
 
-		CameraMovement.cameraMovement.fightingBoss = false;
+            this.bossHealthBar.UpdateHealthBar(health, sumMaxHealth);
 
-		yield return new WaitForSeconds(.4f);
+            yield return new WaitForEndOfFrame();
+        }
 
-		foreach (EnemyHealth enemyHealth in destroyOnVictory)
+        CameraMovement.cameraMovement.fightingBoss = false;
+
+        yield return new WaitForSeconds(.4f);
+
+        foreach (var enemyHealth in this.destroyOnVictory)
             enemyHealth.Death();
 
-        bossHealthBar.SwoopOut();
-	}
+        this.bossHealthBar.SwoopOut();
+    }
 }
