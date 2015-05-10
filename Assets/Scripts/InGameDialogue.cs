@@ -10,7 +10,9 @@ public class InGameDialogue : MonoBehaviour
     private Image background;
     private int currentLine;
     private Text dialogue;
+    private Image portrait;
     private AudioClip previousAudioClip;
+    private Text speaker;
     public static InGameDialogue Instance { get; private set; }
 
     private void Start()
@@ -19,18 +21,25 @@ public class InGameDialogue : MonoBehaviour
         this.background = GameObject.Find("Dialogue Background").GetComponent<Image>();
         this.background.color = new Color(0, 0, 0, 0);
         this.dialogue = GameObject.Find("Dialogue").GetComponent<Text>();
+        this.portrait = GameObject.Find("Dialogue Portrait").GetComponent<Image>();
+        this.portrait.enabled = false;
+        this.speaker = GameObject.Find("Dialogue Speaker").GetComponent<Text>();
         InGameDialogue.Instance = this;
     }
 
     /// <summary>
     ///     Starts the dialogue and scrolls it ever .o2 sec using a waitforseconds
     /// </summary>
-    public IEnumerator SayDialogue(string toSay)
+    public IEnumerator SayDialogue(string speakerName, string toSay)
     {
         var coroutineCharacterCount = 0;
 
         // Fade In
         this.dialogue.text = string.Empty;
+        var portraitImage = (Texture2D) Resources.Load("Portraits/" + speakerName);
+        this.portrait.enabled = true;
+        this.portrait.sprite = Sprite.Create(portraitImage, new Rect(1, 1, 605, 799), new Vector2(0, 0));
+        this.speaker.text = speakerName;
         while (this.background.color.a <= .39f)
         {
             var current = this.background.color;
@@ -71,6 +80,8 @@ public class InGameDialogue : MonoBehaviour
 
         // Fade Out
         this.dialogue.text = string.Empty;
+        this.portrait.enabled = false;
+        this.speaker.text = string.Empty;
         while (this.background.color.a >= 0f)
         {
             var current = this.background.color;

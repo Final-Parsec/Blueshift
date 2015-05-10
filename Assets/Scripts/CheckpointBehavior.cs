@@ -13,6 +13,7 @@ public class CheckpointBehavior : MonoBehaviour
     public List<CheckpointActivatedMovement> enemiesToTrigger;
     public bool loadScene;
     public int sceneToLoad;
+    public string speaker;
     public bool triggerEnemies;
 
     private void OnTriggerEnter(Collider col)
@@ -25,7 +26,7 @@ public class CheckpointBehavior : MonoBehaviour
         if (!string.IsNullOrEmpty(this.dialogue))
         {
             var inGameDialogue = InGameDialogue.Instance;
-            inGameDialogue.StartCoroutine(inGameDialogue.SayDialogue(this.dialogue));
+            inGameDialogue.StartCoroutine(inGameDialogue.SayDialogue(this.speaker, this.dialogue));
         }
 
         if (this.loadScene)
