@@ -112,4 +112,23 @@ public class ShipHealth : MonoBehaviour, Health
 		deathModal.SetActive(true);
         deathModal.GetComponent<Animator>().SetTrigger("fadein");
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (IsDying && other.tag == TagsAndEnums.terrain) 
+        {
+            Explode();
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log ("Move the poop, says Matt.");
+        if (collision.collider.tag == TagsAndEnums.terrain)
+        {
+            this.Health -= (int)(this.Health * .1f);
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+        }
+    }
+
 }

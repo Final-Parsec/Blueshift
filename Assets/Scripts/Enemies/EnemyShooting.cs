@@ -89,9 +89,9 @@ public class EnemyShooting : MonoBehaviour {
         {
             Projectile proj = PrefabAccessor.GetProjectile(projectileType, transform.root.tag, GetMuzzlePoint().transform.position);
 
-			Vector3 aimVector = shootFromPerspectiveOf.forward * -1;
-			proj.transform.rotation = Quaternion.LookRotation(aimVector);
-
+			Vector3 aimVector = shootFromPerspectiveOf.forward * -1f;
+            proj.transform.rotation = Quaternion.LookRotation(aimVector * -1f);
+			
             proj.Intercept(aimVector, 0);
             count++;
         } while(shootFromEveryMuzzle && count < muzzlePoints.Count);
