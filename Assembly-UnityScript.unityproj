@@ -51,6 +51,7 @@
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\Hologram_Diff_Illum_DPan.shader" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\RampLit.shader" />
      <None Include="Assets\Third Party\PorglezompPyroclastics\Explosion.shader" />
+     <None Include="Assets\Sounds\Digital SFX Set\readme.txt" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\RampBasic.shader" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\Ramp_Diff_Cutout.shader" />
      <None Include="Assets\Third Party\Ground textures pack\CartoonSpacecraft\Standard Assets\Skyboxes\skybox info.txt" />
