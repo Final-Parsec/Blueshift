@@ -11,18 +11,18 @@ public class BobbingEnemy : CheckpointActivatedMovement {
 	protected override IEnumerator Active()
 	{	
 		float lastRun = Time.time;
-		while (TagsAndEnums.GetSqrDistance(transform.root.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
+        while (TagsAndEnums.GetSqrDistance(mainComponent.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
 		{
-			if(transform.root.position.y >= originalY + deltaYDistance || transform.root.position.y <= originalY - deltaYDistance)
+            if(mainComponent.position.y >= originalY + deltaYDistance || mainComponent.position.y <= originalY - deltaYDistance)
 			{
 				direction = -direction;
-				transform.root.position = new Vector3(transform.root.position.x,
+                mainComponent.position = new Vector3(mainComponent.position.x,
 				                                      originalY + (deltaYDistance - .0001f) * direction,
-				                                      transform.root.position.z);
+                                                       mainComponent.position.z);
 			}
-			transform.root.position = new Vector3(transform.root.position.x,
-			                                      transform.root.position.y - direction * (Time.time - lastRun) * bobbingSpeed,
-			                                      transform.root.position.z);
+            mainComponent.position = new Vector3(mainComponent.position.x,
+                                                   mainComponent.position.y - direction * (Time.time - lastRun) * bobbingSpeed,
+                                                   mainComponent.position.z);
 
 			lastRun = Time.time;
 			yield return new WaitForEndOfFrame();
@@ -31,7 +31,7 @@ public class BobbingEnemy : CheckpointActivatedMovement {
 
 	protected override void Start()
 	{
-		originalY = transform.root.position.y;
+        originalY = mainComponent.position.y;
 		base.Start();
 	}
 }

@@ -9,6 +9,7 @@ public class TagsAndEnums : MonoBehaviour {
     public const string projectile = "projectile";
 	public const string shootingBox = "shootingBox";
 	public const string levelSelector = "levelSelector";
+    public const string obstical = "obstical";
 
     public static float GetSqrDistance(Vector3 a, Vector3 b)
     {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public abstract class CheckpointActivatedMovement : MonoBehaviour
 {
     public float activeRange;
+    public Transform mainComponent;
     protected BoxCollider[] boxColliders;
     protected SphereCollider[] sphereColliders;
 
@@ -13,12 +14,15 @@ public abstract class CheckpointActivatedMovement : MonoBehaviour
     // Use this for initialization
     protected virtual void Start()
     {
-        boxColliders = transform.root.GetComponentsInChildren<BoxCollider>();
-        sphereColliders = transform.root.GetComponentsInChildren<SphereCollider>();
+        if (mainComponent == null)
+            mainComponent = transform.root;
+
+        boxColliders = mainComponent.GetComponentsInChildren<BoxCollider>();
+        sphereColliders = mainComponent.GetComponentsInChildren<SphereCollider>();
 
         if(activeRange > 0)
         {
-            foreach (MeshRenderer meshrenderer in transform.root.GetComponentsInChildren<MeshRenderer>())
+            foreach (MeshRenderer meshrenderer in mainComponent.GetComponentsInChildren<MeshRenderer>())
                 meshrenderer.enabled = false;
 
             if(boxColliders != null)
@@ -33,7 +37,7 @@ public abstract class CheckpointActivatedMovement : MonoBehaviour
     
     public virtual void Trigger()
     {
-        foreach (MeshRenderer meshrenderer in transform.root.GetComponentsInChildren<MeshRenderer>())
+        foreach (MeshRenderer meshrenderer in mainComponent.GetComponentsInChildren<MeshRenderer>())
             meshrenderer.enabled = true;
 
         if(boxColliders != null)

@@ -16,25 +16,25 @@ public class TouchBackFlying : CheckpointActivatedMovement
 	{   
 		float lastRun = Time.time;
 		Vector3 targetDir = Vector3.zero;
-		while (TagsAndEnums.GetSqrDistance(transform.root.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
+        while (TagsAndEnums.GetSqrDistance(mainComponent.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
 		{
 			Transform cameraTransform = CameraMovement.cameraMovement.transform;
 			if(!wentTheDistance)
 			{
-				if(TagsAndEnums.GetSqrDistance(transform.root.position, cameraTransform.position) >= distanceToReach * distanceToReach)
+                if(TagsAndEnums.GetSqrDistance(mainComponent.position, cameraTransform.position) >= distanceToReach * distanceToReach)
 				{
 					wentTheDistance = true;
 					turningAround = true;
-					targetDir = transform.root.forward * -1;
+                    targetDir = mainComponent.forward * -1;
 					speed = speedWhileTurning;
 				}
 			} 
 			else if(turningAround)
 			{
-				Quaternion startQuat = transform.root.rotation;
-				Vector3 newDirection = Vector3.RotateTowards(transform.root.forward, targetDir, (Time.time - lastRun) * rotateSpeed, 0);
-				transform.root.rotation = Quaternion.LookRotation(newDirection);
-				if(startQuat.eulerAngles == transform.root.rotation.eulerAngles)
+                Quaternion startQuat = mainComponent.rotation;
+                Vector3 newDirection = Vector3.RotateTowards(mainComponent.forward, targetDir, (Time.time - lastRun) * rotateSpeed, 0);
+                mainComponent.rotation = Quaternion.LookRotation(newDirection);
+                if(startQuat.eulerAngles == mainComponent.rotation.eulerAngles)
 				{
 					turningAround = false;
 					speed = postTurnSpeed;
@@ -44,8 +44,8 @@ public class TouchBackFlying : CheckpointActivatedMovement
 				}
 			}
 
-			Vector3 moveVector = transform.root.forward;
-			transform.root.position = transform.root.position + moveVector * speed * (Time.time - lastRun);
+            Vector3 moveVector = mainComponent.forward;
+            mainComponent.position = mainComponent.position + moveVector * speed * (Time.time - lastRun);
 
 			lastRun = Time.time;
 			yield return new WaitForSeconds(.009f);
@@ -59,7 +59,7 @@ public class TouchBackFlying : CheckpointActivatedMovement
 
 	public override void Trigger()
 	{
-		foreach (MeshRenderer meshrenderer in transform.root.GetComponentsInChildren<MeshRenderer>())
+        foreach (MeshRenderer meshrenderer in mainComponent.GetComponentsInChildren<MeshRenderer>())
 			meshrenderer.enabled = true;
         if(boxColliders != null)
             foreach(BoxCollider bc in boxColliders)

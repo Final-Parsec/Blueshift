@@ -9,9 +9,9 @@ public class StraightFlyEnemy : CheckpointActivatedMovement
     protected override IEnumerator Active()
     {   
 		float lastRun = Time.time;
-        while (TagsAndEnums.GetSqrDistance(transform.root.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
+        while (TagsAndEnums.GetSqrDistance(mainComponent.position, ShipMovement.shipMovement.transform.position) < activeRange*activeRange)
         {
-            transform.root.position = transform.root.position + moveVector * speed * (Time.time - lastRun);
+            mainComponent.position = mainComponent.position + moveVector * speed * (Time.time - lastRun);
 
 			lastRun = Time.time;
             yield return new WaitForEndOfFrame();
@@ -20,7 +20,7 @@ public class StraightFlyEnemy : CheckpointActivatedMovement
     
     protected override void Start()
     {
-        moveVector = transform.root.forward;
+        moveVector = mainComponent.forward;
         base.Start();
     }
 }
