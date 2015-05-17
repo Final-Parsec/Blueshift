@@ -14,13 +14,13 @@ public class StraightFlyEnemy : CheckpointActivatedMovement
             mainComponent.position = mainComponent.position + moveVector * speed * (Time.time - lastRun);
 
 			lastRun = Time.time;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(1f/120f);
         }
     }
     
     protected override void Start()
     {
-        moveVector = mainComponent.forward;
+        moveVector = mainComponent.forward.normalized;
         base.Start();
     }
 }

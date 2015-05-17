@@ -44,11 +44,11 @@ public class TouchBackFlying : CheckpointActivatedMovement
 				}
 			}
 
-            Vector3 moveVector = mainComponent.forward;
+            Vector3 moveVector = mainComponent.forward.normalized;
             mainComponent.position = mainComponent.position + moveVector * speed * (Time.time - lastRun);
 
 			lastRun = Time.time;
-			yield return new WaitForSeconds(.009f);
+            yield return new WaitForSeconds(1f / 120f);
 		}
 	}
 	

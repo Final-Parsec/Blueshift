@@ -14,6 +14,7 @@ public class InGameDialogue : MonoBehaviour
     private AudioClip previousAudioClip;
     private Text speaker;
     public static InGameDialogue Instance { get; private set; }
+    public static IEnumerator DialogueCoroutine { get; set; }
 
     private void Start()
     {

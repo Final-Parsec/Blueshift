@@ -26,7 +26,12 @@ public class CheckpointBehavior : MonoBehaviour
         if (!string.IsNullOrEmpty(this.dialogue))
         {
             var inGameDialogue = InGameDialogue.Instance;
-            inGameDialogue.StartCoroutine(inGameDialogue.SayDialogue(this.speaker, this.dialogue));
+            if (InGameDialogue.DialogueCoroutine != null)
+            {
+                inGameDialogue.StopCoroutine(InGameDialogue.DialogueCoroutine);
+            }
+            InGameDialogue.DialogueCoroutine = inGameDialogue.SayDialogue(this.speaker, this.dialogue);
+            inGameDialogue.StartCoroutine(InGameDialogue.DialogueCoroutine);
         }
 
         if (this.loadScene)

@@ -25,7 +25,7 @@ public class BobbingEnemy : CheckpointActivatedMovement {
                                                    mainComponent.position.z);
 
 			lastRun = Time.time;
-			yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(1f / 120f);
 		}
 	}
 
