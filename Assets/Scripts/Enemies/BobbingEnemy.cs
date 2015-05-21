@@ -32,6 +32,7 @@ public class BobbingEnemy : CheckpointActivatedMovement {
 	protected override void Start()
 	{
         originalY = mainComponent.position.y;
+        bobbingSpeed -= Random.Range(0f,3f);
 		base.Start();
 	}
 }
