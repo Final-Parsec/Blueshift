@@ -22,24 +22,6 @@ public class CameraMovement : MonoBehaviour
     public void NextWaypoint()
     {
         waypoints.RemoveAt(0);
-        StartCoroutine(Rotate());
-    }
-
-    IEnumerator Rotate()
-    {
-        bool repeat = true;
-        while (repeat && waypoints.Count != 0)
-        {
-            Quaternion originalRotation = transform.rotation;
-            Vector3 targetDirection = waypoints [0].position - transform.position;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime * .2f, 0);
-            transform.rotation = Quaternion.LookRotation(newDirection);
-
-            if (originalRotation != transform.rotation)
-                yield return new WaitForEndOfFrame();
-            else
-                repeat = false;
-        }
     }
 
     // Use this for initialization
@@ -64,7 +46,13 @@ public class CameraMovement : MonoBehaviour
             float step = speed * Time.deltaTime;
             Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);
             transform.position = transform.position - moveVector * step;
+
+            Quaternion originalRotation = transform.rotation;
+            Vector3 targetDirection = waypoints [0].position - transform.position;
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Time.deltaTime * .2f, 0);
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
+
 
         // make the ship be 15 units in front of the camera
         Vector3 shipPos = ShipMovement.shipMovement.transform.localPosition;
