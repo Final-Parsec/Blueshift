@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour, Health
 	public float explosionPositionVariance;
     public float blinkTime = .3f;
     public bool godMode;
+	public bool hitsObsticals = false;
 
 	private Animator animator;
 	private MeshRenderer[] meshRenderers;
@@ -16,6 +17,7 @@ public class EnemyHealth : MonoBehaviour, Health
 	private Color blinkColor = Color.red;
 	private Color[] naturalColors;
     public int MaxHealth{get; set;}
+
 
     public int Health
     {

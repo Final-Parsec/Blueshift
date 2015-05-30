@@ -13,5 +13,15 @@ public class Obstacle : MonoBehaviour
 //			                                                     ShipHealth.Instance.transform.position.z);
 			ShipMovement.shipMovement.Ascend();
 		}
+
+	}
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == TagsAndEnums.enemy)
+		{
+			EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+			if (enemyHealth.hitsObsticals)
+				enemyHealth.Health = 0;
+		}
 	}
 }
