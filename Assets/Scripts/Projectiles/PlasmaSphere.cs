@@ -31,7 +31,6 @@ public class PlasmaSphere : Projectile {
 		armed = false;
 		hitObject = false;
 		
-		transform.position = Vector3.zero;
         BackInThePool();
 	}
 }

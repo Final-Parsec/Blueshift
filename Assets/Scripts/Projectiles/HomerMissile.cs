@@ -43,7 +43,6 @@ public class HomerMissile : Projectile {
 		armed = false;
 		hitObject = false;
 		
-		transform.position = Vector3.zero;
         BackInThePool();
 	}
 }
