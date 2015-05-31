@@ -20,7 +20,7 @@ public class Obstacle : MonoBehaviour
 		if (other.tag == TagsAndEnums.enemy)
 		{
 			EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-			if (enemyHealth.hitsObsticals)
+			if (enemyHealth.HitsObstacles)
 				enemyHealth.Health = 0;
 		}
 	}

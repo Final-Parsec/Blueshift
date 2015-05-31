@@ -5,8 +5,11 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour
 {
 	private static PauseMenu instance;
-	
-	private GameObject pauseEnableButton;
+
+    private InGameDialogue inGameDialogue;
+    private GameObject inGameDialogueContainer;
+    
+    private GameObject pauseEnableButton;
 	private GameObject pauseUi;
     int resumeCount = 0;
 	
@@ -24,6 +27,8 @@ public class PauseMenu : MonoBehaviour
 
 	public void PauseToggle()
 	{
+        this.inGameDialogue.HideForPause();
+        this.inGameDialogueContainer.SetActive(!this.inGameDialogueContainer.activeSelf);
 		this.pauseUi.SetActive(!this.pauseUi.activeSelf);
 		this.pauseEnableButton.SetActive(!this.pauseEnableButton.activeSelf);
 		if (this.pauseUi.activeSelf)
@@ -48,6 +53,8 @@ public class PauseMenu : MonoBehaviour
 	void Start ()
 	{
 		instance = this;
+        this.inGameDialogueContainer = GameObject.Find("In-Game Dialogue");
+        this.inGameDialogue = this.inGameDialogueContainer.GetComponent<InGameDialogue>();
 		this.pauseEnableButton = GameObject.Find("PauseEnableButton");
 		this.pauseUi = GameObject.Find("PauseUI");
 		this.pauseUi.SetActive(false);

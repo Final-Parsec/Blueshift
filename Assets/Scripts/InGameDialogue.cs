@@ -28,6 +28,15 @@ public class InGameDialogue : MonoBehaviour
         InGameDialogue.Instance = this;
     }
 
+    public void HideForPause()
+    {
+        this.dialogue.text = string.Empty;
+        this.portrait.enabled = false;
+        this.speaker.text = string.Empty;
+        var current = this.background.color;
+        this.background.color = new Color(current.r, current.g, current.b, 0f);
+    }
+
     /// <summary>
     ///     Starts the dialogue and scrolls it ever .o2 sec using a waitforseconds
     /// </summary>

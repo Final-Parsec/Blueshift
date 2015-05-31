@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyHealth : MonoBehaviour, Health
 {
@@ -9,13 +10,13 @@ public class EnemyHealth : MonoBehaviour, Health
 	public float explosionPositionVariance;
     public float blinkTime = .3f;
     public bool godMode;
-	public bool hitsObsticals = false;
+	
 
 	private Animator animator;
 	private MeshRenderer[] meshRenderers;
 	private float blinkSpeed = .04f;
 	private Color blinkColor = Color.red;
-	private Color[] naturalColors;
+    private Color[] naturalColors;
     public int MaxHealth{get; set;}
 
 
@@ -42,6 +43,12 @@ public class EnemyHealth : MonoBehaviour, Health
         }
     }
 
+    public bool HitsObstacles
+    {
+        get;
+        private set;
+    }
+
 	void Start()
 	{
         MaxHealth = _health;
@@ -50,6 +57,8 @@ public class EnemyHealth : MonoBehaviour, Health
         naturalColors = new Color[meshRenderers.Length];
         for(int x = 0; x < meshRenderers.Length; x++)
             naturalColors[x] = meshRenderers[x].material.color;
+
+        this.HitsObstacles = this.GetComponentInChildren<CheckpointActivatedMovement>() != null;
 	}
 
 	IEnumerator AnimateHit()
