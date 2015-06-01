@@ -41,11 +41,14 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // make the camera move
-        if (waypoints.Count != 0 && !fightingBoss && !shipHealth.IsDying)
+        if (waypoints.Count != 0 && !shipHealth.IsDying)
         {
-            float step = speed * Time.deltaTime;
-            Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);
-            transform.position = transform.position - moveVector * step;
+			if(!fightingBoss)
+			{
+	            float step = speed * Time.deltaTime;
+	            Vector3 moveVector = Vector3.Normalize(transform.position - waypoints [0].transform.position);
+	            transform.position = transform.position - moveVector * step;
+			}
 
             Quaternion originalRotation = transform.rotation;
             Vector3 targetDirection = waypoints [0].position - transform.position;
