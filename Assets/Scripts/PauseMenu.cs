@@ -65,12 +65,18 @@ public class PauseMenu : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
+		if (ShipHealth.Instance.Health <= 0 && this.pauseUi.activeSelf) 
+		{
+			this.PauseToggle();
+		}
+
         if((this.pauseUi.activeSelf && Input.GetMouseButtonUp(0)))
             resumeCount++;
 
-        if ( resumeCount == 2 || Input.GetKeyUp(KeyCode.Escape))
+		if ( resumeCount == 2 || Input.GetKeyUp(KeyCode.Escape))
 		{
-			this.PauseToggle();
+			if(ShipHealth.Instance.Health > 0)
+				this.PauseToggle();
 		}
 	}
 }
