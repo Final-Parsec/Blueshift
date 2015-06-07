@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 public class Cutscenes : MonoBehaviour{
 	public string sceneToLoad;
@@ -17,6 +18,8 @@ public class Cutscenes : MonoBehaviour{
 	private float cortime = 0;
 	private int corCharCount = 0;
 	private string toSay;
+	private Stopwatch stopwatch = new Stopwatch();
+	private int waitTime = 3000;
 
 	void Start(){
 		io = new CutscenesIO (Application.loadedLevelName);
@@ -57,12 +60,32 @@ public class Cutscenes : MonoBehaviour{
 	
 	void Update()
 	{	
+		if (!talking && !stopwatch.IsRunning) 
+		{
+			stopwatch.Start();
+		}
+
 		if (Input.anyKeyDown)
 		{
+			if (stopwatch.IsRunning) 
+			{
+				waitTime = 10000;
+				stopwatch.Stop();
+				stopwatch.Reset();
+			}
+
 			if(talking)
 				FinishCurrentLine();
 			else
 				NextLine ();
+		}
+
+		if(stopwatch.ElapsedMilliseconds >= waitTime)
+		{
+			NextLine ();
+			waitTime = 3000;
+			stopwatch.Stop();
+			stopwatch.Reset();
 		}
 	}
 
