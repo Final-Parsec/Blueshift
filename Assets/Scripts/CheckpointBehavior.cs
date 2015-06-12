@@ -8,6 +8,7 @@ public class CheckpointBehavior : MonoBehaviour
     public bool bossFight;
     public BossHealthBar bossHealthBar;
     public bool cameraWaypoint;
+    public bool loops = false;
     public List<EnemyHealth> destroyOnVictory;
     public string dialogue;
     public List<CheckpointActivatedMovement> enemiesToTrigger;
@@ -42,7 +43,7 @@ public class CheckpointBehavior : MonoBehaviour
 
         if (this.cameraWaypoint)
         {
-            CameraMovement.cameraMovement.NextWaypoint();
+            CameraMovement.cameraMovement.NextWaypoint(loops);
             this.cameraWaypoint = false;
         }
 
@@ -57,10 +58,17 @@ public class CheckpointBehavior : MonoBehaviour
 
         if (this.bossFight)
         {
-            CameraMovement.cameraMovement.fightingBoss = true;
+            if(!loops)
+                CameraMovement.cameraMovement.fightingBoss = true;
             this.bossFight = false;
             this.StartCoroutine(this.TestForVictory());
         }
+    }
+
+    private void OnTriggerExit()
+    {
+        if(loops)
+            this.cameraWaypoint = true;
     }
 
     private IEnumerator TestForVictory()
@@ -71,6 +79,7 @@ public class CheckpointBehavior : MonoBehaviour
         foreach (var boss in this.bosses)
             sumMaxHealth += boss.MaxHealth;
 
+        var lastHeath = 0;
         while (this.bosses.Count > 0)
         {
             this.bosses.RemoveAll(enemyHealth => enemyHealth == null);
@@ -79,7 +88,11 @@ public class CheckpointBehavior : MonoBehaviour
             foreach (var boss in this.bosses)
                 health += boss.Health;
 
-            this.bossHealthBar.UpdateHealthBar(health, sumMaxHealth);
+            if(lastHeath != health)
+            {
+                this.bossHealthBar.UpdateHealthBar(health, sumMaxHealth);
+                lastHeath = health;
+            }
 
             yield return new WaitForEndOfFrame();
         }

@@ -19,8 +19,12 @@ public class CameraMovement : MonoBehaviour
         return moveVector;
     }
 
-    public void NextWaypoint()
+    public void NextWaypoint(bool loops)
     {
+        if(loops)
+        {
+            waypoints.Add(waypoints[0]);
+        }
         waypoints.RemoveAt(0);
     }
 
