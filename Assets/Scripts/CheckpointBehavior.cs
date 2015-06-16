@@ -16,6 +16,7 @@ public class CheckpointBehavior : MonoBehaviour
     public int sceneToLoad;
     public string speaker;
     public bool triggerEnemies;
+    
 
     private void OnTriggerEnter(Collider col)
     {
@@ -44,7 +45,8 @@ public class CheckpointBehavior : MonoBehaviour
         if (this.cameraWaypoint)
         {
             CameraMovement.cameraMovement.NextWaypoint(loops);
-            this.cameraWaypoint = false;
+            if(!loops)
+                this.cameraWaypoint = false;
         }
 
         if (this.triggerEnemies)
@@ -63,6 +65,9 @@ public class CheckpointBehavior : MonoBehaviour
             this.bossFight = false;
             this.StartCoroutine(this.TestForVictory());
         }
+
+        if(loops)
+            StartCoroutine(Wait());
     }
 
     private void OnTriggerExit()
@@ -105,5 +110,20 @@ public class CheckpointBehavior : MonoBehaviour
             enemyHealth.Death();
 
         this.bossHealthBar.SwoopOut();
+
+        if(loops)
+        {
+            //yield return new WaitForSeconds(.7f);
+            SceneLoader.LoadCutscene(this.sceneToLoad);
+        }
     }
+
+    private IEnumerator Wait()
+    {
+
+        yield return new WaitForSeconds(10);
+        this.cameraWaypoint = true;
+
+    }
+
 }

@@ -20,7 +20,8 @@ public class HealthBar : MonoBehaviour {
     {
         float healthRatio = ((float)health) / ((float)maxHealth);
         float newHeight = startingHeight * (1 - healthRatio);
-        
+
+        StopAllCoroutines();
         StartCoroutine(MoveBar(newHeight));
     }
     

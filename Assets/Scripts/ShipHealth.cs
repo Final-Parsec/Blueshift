@@ -55,7 +55,7 @@ public class ShipHealth : MonoBehaviour, Health
             {
                 if (value <= 0)
     			{
-                    _health = 0;
+                    value = 0;
     				Death();
                     GetComponent<BoxCollider>().isTrigger = true;
     			}
