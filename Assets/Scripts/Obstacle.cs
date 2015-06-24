@@ -19,6 +19,8 @@ public class Obstacle : MonoBehaviour
 	{
 		if (other.tag == TagsAndEnums.enemy)
 		{
+            Debug.Log("hit");
+
 			EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
 			if (enemyHealth.HitsObstacles)
 				enemyHealth.Health = 0;
