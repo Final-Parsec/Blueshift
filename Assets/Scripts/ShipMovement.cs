@@ -24,7 +24,7 @@ public class ShipMovement : MonoBehaviour
     /// <summary>
     /// Steers ship to the left.
     /// </summary>
-    void BankLeft()
+    public void BankLeft()
     {
         bool pastLeftScreenEdge = Camera.main.WorldToScreenPoint(transform.position).x <= 0;
         if (!pastLeftScreenEdge)
@@ -37,7 +37,7 @@ public class ShipMovement : MonoBehaviour
     /// <summary>
     /// Steers ship to the right.
     /// </summary>
-    void BankRight()
+    public void BankRight()
     {
         bool pastRightScreenEdge = Camera.main.WorldToScreenPoint(transform.position).x >= Screen.width;
         if (!pastRightScreenEdge)
@@ -50,7 +50,7 @@ public class ShipMovement : MonoBehaviour
     /// <summary>
     /// Accelerates ship and lowers on y-axis.
     /// </summary>
-    void Dive()
+    public void Dive()
     {
         bool pastBottomScreenEdge = Camera.main.WorldToScreenPoint(transform.position).y <= 0;
 
