@@ -50,6 +50,7 @@
      <None Include="Assets\Third Party\ZGONAssets\Shared\Shaders\ZGONBumpedDetailSpec_01.shader" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\Hologram_Diff_Illum_DPan.shader" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\RampLit.shader" />
+     <None Include="Assets\Resources\Dialogue\Cutscene 2 - Continued.txt" />
      <None Include="Assets\Third Party\PorglezompPyroclastics\Explosion.shader" />
      <None Include="Assets\Sounds\Digital SFX Set\readme.txt" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\RampBasic.shader" />
