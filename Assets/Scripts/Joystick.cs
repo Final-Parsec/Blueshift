@@ -81,4 +81,4 @@ public class Joystick : MonoBehaviour {
 //		this.transform.position += onTouchMoveSpeed * new Vector3(dragSummary.direction.x, dragSummary.direction.y, 0f);
 //		Debug.Log ("this shouldnt happen");
 //	}
-//}
+}
