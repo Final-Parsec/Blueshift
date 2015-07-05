@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Debug = System.Diagnostics.Debug;
 
 public class StraightFlyEnemy : CheckpointActivatedMovement
 {
@@ -20,7 +21,8 @@ public class StraightFlyEnemy : CheckpointActivatedMovement
     
     protected override void Start()
     {
-        moveVector = mainComponent.forward.normalized;
         base.Start();
+        Debug.Assert(this.mainComponent != null, "mainComponent is set in base.Start()");
+        this.moveVector = this.mainComponent.forward.normalized;
     }
 }

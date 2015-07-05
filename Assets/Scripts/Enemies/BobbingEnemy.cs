@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Debug = System.Diagnostics.Debug;
 
 public class BobbingEnemy : CheckpointActivatedMovement {
 
@@ -31,8 +32,9 @@ public class BobbingEnemy : CheckpointActivatedMovement {
 
 	protected override void Start()
 	{
-        originalY = mainComponent.position.y;
-        bobbingSpeed -= Random.Range(0f,3f);
-		base.Start();
+        base.Start();
+	    Debug.Assert(this.mainComponent != null, "mainComponent is set in base.Start()");
+	    this.originalY = this.mainComponent.position.y;
+        this.bobbingSpeed -= Random.Range(0f,3f);
 	}
 }
