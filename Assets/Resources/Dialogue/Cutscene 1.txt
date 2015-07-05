@@ -1,5 +1,7 @@
-Management@Charles, your first assignment is a small repo in the Horn of Africa.  Somalia has defaulted on their debt, and their land was put up for collateral.  We need to take that land back.  It's just something that happens from time to time; everyone falls on hard times.  
-Charles Storm@So I'm a glorified repo man?
-Management@These guys barely had the infrastructure to set up their loan, so I don't expect too many surprises.  However, they have been very uncompliant on our terms and proceedings.  It seems as though they may become violent.  We've equipped your scouter with a basic blaster.  It's up to you how you use it.
-Charles Storm@Wait, wha-
-Management@We'll clean up your mess as long as you finish the job. 
+Story@The year is 2115. Due to a lack of funding, government space exploration fell behind those sponsored by private enterprise.
+Story@In order to avoid regulation and interference, corporations headquarted on the moon.
+Story@Corporate entities like Sol Industries are able to provide better wages and a higher standard of living to their employees working on the moon.
+Story@The mooon has become a place a for the ultra elite and powerful while humans living on Earth fall into poverty.
+Story@Corporations are loaning money to goverments and sovereign default is a risk.
+Story@In response, Sol Industries has formed the Government Asset Repossesion Squadron. GARS is a highly militarized and effective space force.
+Story@Coporate jobs like these are highly coveted and usually mean relocation to the moon. Our hero, Charles Storm, has applied to be pilot for GARS...

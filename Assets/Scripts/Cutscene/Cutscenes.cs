@@ -19,7 +19,7 @@ public class Cutscenes : MonoBehaviour{
 	private int corCharCount = 0;
 	private string toSay;
 	private Stopwatch stopwatch = new Stopwatch();
-	private int waitTime = 3000;
+	private int waitTime = 5000;
 
 	void Start(){
 		io = new CutscenesIO (Application.loadedLevelName);
@@ -83,7 +83,7 @@ public class Cutscenes : MonoBehaviour{
 		if(stopwatch.ElapsedMilliseconds >= waitTime)
 		{
 			NextLine ();
-			waitTime = 3000;
+			waitTime = 5000;
 			stopwatch.Stop();
 			stopwatch.Reset();
 		}

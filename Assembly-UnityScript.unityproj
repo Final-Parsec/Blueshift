@@ -71,6 +71,7 @@
      <None Include="Assets\Resources\Dialogue\Cutscene 6.txt" />
      <None Include="Assets\Third Party\Dice Props Pack\DPP_README.txt" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\Ramp_Diff_Illum.shader" />
+     <None Include="Assets\Resources\Dialogue\Cutscene 1 - Continued.txt" />
      <None Include="Assets\Third Party\Dice Props Pack\Shaders\Ramp_Diff_Illum_Cutout.shader" />
      <None Include="Assets\Resources\Dialogue\Cutscene 8.txt" />
      <None Include="Assets\Third Party\PorglezompPyroclastics\README.txt" />
