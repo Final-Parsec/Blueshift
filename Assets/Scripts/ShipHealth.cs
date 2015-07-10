@@ -115,7 +115,7 @@ public class ShipHealth : MonoBehaviour, Health
 
     void OnTriggerEnter(Collider other)
     {
-        if (IsDying && other.tag == TagsAndEnums.terrain) 
+        if (IsDying && (other.tag == TagsAndEnums.terrain || other.tag == TagsAndEnums.obstical)) 
         {
             Explode();
         }
