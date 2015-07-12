@@ -42,35 +42,36 @@ public class ShipHealth : MonoBehaviour, Health
 	{
 		get
 		{
-			return _health;
+			return this._health;
 		}
 		set
 		{
-			if(isDying)
+			if(this.isDying)
 			{
 				return;
 			}
 
-            if (value < _health)
+            if (value < this._health)
             {
                 if (value <= 0)
     			{
                     value = 0;
-    				Death();
+    			    this.Death();
                     GetComponent<BoxCollider>().isTrigger = true;
     			}
     			else
     			{
-    				AnimateHit();
+    			    this.AnimateHit();
+                    Handheld.Vibrate();
     			}
             }
-            else if(value > MaxHealth)
+            else if(value > this.MaxHealth)
             {
-                value = MaxHealth;
+                value = this.MaxHealth;
             }
 
-            _health = value;
-            healthBar.UpdateHealthBar(_health, MaxHealth);
+		    this._health = value;
+            healthBar.UpdateHealthBar(this._health, this.MaxHealth);
 		}
 	}
 
