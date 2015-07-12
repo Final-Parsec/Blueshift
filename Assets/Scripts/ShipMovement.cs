@@ -63,34 +63,32 @@ public class ShipMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-		if (shipHealth.IsDying)
-			return;
+        if (this.shipHealth.IsDying)
+        {
+            return;
+        }
 
         // normalize ship rotation
-		bankingShip.localRotation = Quaternion.Slerp(bankingShip.localRotation, Quaternion.Euler(0, 0, 0), (Time.fixedDeltaTime * bankSpeed));
-        //ship.localPosition = Vector3.zero;
-        GetComponentInChildren<Rigidbody>().velocity = Vector3.zero;
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) ||
-            (Input.acceleration.y > -.25 && Input.acceleration.y != 0))
+        this.bankingShip.localRotation = Quaternion.Slerp(this.bankingShip.localRotation, Quaternion.Euler(0, 0, 0), (Time.fixedDeltaTime * this.bankSpeed));
+        this.GetComponentInChildren<Rigidbody>().velocity = Vector3.zero;
+
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
-            Dive();
-        } else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) ||
-            Input.acceleration.y < -.85)
-        {
-            Ascend();
+            this.Dive();
         }
-        
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) ||
-            Input.acceleration.x < -.25)
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            BankLeft();
-        } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) ||
-            Input.acceleration.x > .25)
-        {
-            BankRight();
+            this.Ascend();
         }
 
-
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            this.BankLeft();
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            this.BankRight();
+        }
     }
 
     void RotateShip(float speed, Vector3 targetDirection)

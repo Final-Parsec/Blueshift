@@ -1,84 +1,110 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour {
+public class Joystick : MonoBehaviour
+{
+    private Vector2 buttonCenter;
+    private static Joystick instance;
+    private int pointerId = -1;
 
-	public float onTouchMoveSpeed = 10f;
-	public bool clicked;
-	public Vector3 mouseCache; //cheese cache
-	private Vector3 center;
-	private ShipMovement shipMover;
+    void Start()
+    {
+        Joystick.instance = this;
+        
+        Debug.Log(Input.multiTouchEnabled);
 
-	// Use this for initialization
-	void Start () {
-		clicked = false;
-		shipMover = GameObject.Find ("mover").GetComponent<ShipMovement>();
-		Debug.Log (shipMover.bankSpeed);
+        if (!Application.isMobilePlatform)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (clicked) {
-			Vector3 curMouse = Input.mousePosition;
-			Vector3 tempTrans = gameObject.transform.position;
+    public static Joystick Instance
+    {
+        get
+        {
+            return Joystick.instance;
+        }
+    }
 
-			if (curMouse.x > mouseCache.x)
-					tempTrans.x += onTouchMoveSpeed;
-			else if (curMouse.x < mouseCache.x)
-					tempTrans.x -= onTouchMoveSpeed;
-			if (curMouse.y > mouseCache.y)
-					tempTrans.y += onTouchMoveSpeed;
-			else if (curMouse.y < mouseCache.y)
-					tempTrans.y -= onTouchMoveSpeed;
+    public bool IsBeingAccessed
+    {
+        get
+        {
+            return this.pointerId != -1;
+        }
+    }
 
-			gameObject.transform.position = tempTrans;
-			mouseCache = curMouse;
+    public Touch Touch
+    {
+        get
+        {
+            return Input.touches.FirstOrDefault(t => t.fingerId == this.pointerId);
+        }
+    }
+    
+    internal Vector2 ButtonCenter
+    {
+        get
+        {
+            if (this.buttonCenter == Vector2.zero)
+            {
+                System.Diagnostics.Debug.Assert(this.transform != null, "transform != null");
+                this.buttonCenter = this.transform.position;
+            }
 
-			//now check which direction to move
+            return this.buttonCenter;
+        }
+    }
 
-			if (curMouse.x > center.x)
-				//move right
-				shipMover.BankRight();
-			else if (curMouse.x < center.x)
-				shipMover.BankLeft ();
-			else if (curMouse.y > center.y)
-				shipMover.Ascend ();
-			else if (curMouse.y < center.y)
-				shipMover.Dive ();
-		}
+    void Update () {
+        ////if (this.Touch.phase == TouchPhase.Ended || this.Touch.phase == TouchPhase.Canceled)
+        ////{
+        ////    return;
+        ////}
+        
+        var touchPosition = this.Touch.position;
+        if (this.pointerId == -1 || touchPosition.x < 0 || touchPosition.y < 0)
+        {
+            return;
+        }
 
-	}
+        //now check which direction to move
+        if (touchPosition.x - this.ButtonCenter.x > 75)
+        {
+            ShipMovement.shipMovement.BankRight();
+        }
+        else if (touchPosition.x - this.ButtonCenter.x < -75)
+        {
+            ShipMovement.shipMovement.BankLeft();
+        }
+        
+        if (touchPosition.y - this.ButtonCenter.y > 75)
+        {
+            ShipMovement.shipMovement.Ascend();
+        }
+        else if (touchPosition.y - this.ButtonCenter.y < -75)
+        {
+            ShipMovement.shipMovement.Dive();
+        }
+    }
 
 	/// <summary>
-	/// Raises the mouse down event.
+	///     Called when the pointer is dragged.
 	/// </summary>
-	void OnMouseDown(){
-		//Debug.Log ("Mmmmmm");
-		clicked = true;
-		mouseCache = Input.mousePosition;
-		center = mouseCache;
-		}
+	public void OnBeginDrag(BaseEventData eventData)
+    {
+        var pointerEventData = eventData as PointerEventData;
+
+		this.pointerId = pointerEventData.pointerId;
+    }
 
 	/// <summary>
-	/// Raises the mouse up event.
-	/// </summary>
-	void OnMouseUp(){
-		clicked = false;
-		Vector3 temp;
-		//temp = gameObject.transform.position;
-		//temp.x = center.x;
-		//temp.y = center.y;
-		//gameObject.transform.position = temp;
-		//Debug.Log ("ooooh.");
-	}
-//    //chunk disappear behavior here, dump joystick center to be set at next touch
-//	public void OnDraggingStopped() {
-//		Debug.Log ("hello!, That Felt Good!");
-//	}
-//
-//	public void OnDrag(DragSummary dragSummary) {
-//		this.transform.position += onTouchMoveSpeed * new Vector3(dragSummary.direction.x, dragSummary.direction.y, 0f);
-//		Debug.Log ("this shouldnt happen");
-//	}
+	///     Called when the pointer stopped being dragged.
+	/// </summary>  
+	public void OnEndDrag()
+    {
+	    this.pointerId = -1;
+    }
 }
