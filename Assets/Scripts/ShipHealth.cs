@@ -62,7 +62,7 @@ public class ShipHealth : MonoBehaviour, Health
     			else
     			{
     			    this.AnimateHit();
-                    Handheld.Vibrate();
+                    //Handheld.Vibrate();
     			}
             }
             else if(value > this.MaxHealth)
