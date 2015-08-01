@@ -1,7 +1,7 @@
 Story@The year is 2115. Due to a lack of funding, government space exploration fell behind those sponsored by private enterprise.
 Story@In order to avoid regulation and interference, corporations headquarted on the moon.
 Story@Corporate entities like Sol Industries are able to provide better wages and a higher standard of living to their employees working on the moon.
-Story@The mooon has become a place a for the ultra elite and powerful while humans living on Earth fall into poverty.
+Story@The moon has become a place a for the ultra elite and powerful while humans living on Earth fall into poverty.
 Story@Corporations are loaning money to goverments and sovereign default is a risk.
-Story@In response, Sol Industries has formed the Government Asset Repossesion Squadron. GARS is a highly militarized and effective space force.
-Story@Coporate jobs like these are highly coveted and usually mean relocation to the moon. Our hero, Charles Storm, has applied to be pilot for GARS...
+Story@In response, Sol Industries has formed the Government Asset Repossession Squadron. GARS is a highly militarized and effective space force.
+Story@Corporate jobs like these are highly coveted and usually mean relocation to the moon. Our hero, Charles Storm, has applied to be pilot for GARS...
