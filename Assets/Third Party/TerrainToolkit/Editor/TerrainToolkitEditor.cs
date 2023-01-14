@@ -3,7 +3,7 @@
 --
 -- Unity Summer of Code 2009
 -- Terrain Toolkit for Unity (Version 1.0.2)
--- All code by Sándor Moldán.
+-- All code by Sï¿½ndor Moldï¿½n.
 --
 -- TerrainToolkitEditor.cs
 --
@@ -36,16 +36,16 @@ public class TerrainToolkitEditor : Editor {
 		}
 		Terrain terComponent = (Terrain) terrain.GetComponent(typeof(Terrain));
 		if (!terrain.guiSkin) {
-			terrain.guiSkin = (GUISkin) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/TerrainErosionEditorSkin.guiskin", typeof(GUISkin));
-			terrain.createIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/createIcon.png", typeof(Texture2D));
-			terrain.erodeIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/erodeIcon.png", typeof(Texture2D));
-			terrain.textureIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/textureIcon.png", typeof(Texture2D));
-			terrain.mooreIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/mooreIcon.png", typeof(Texture2D));
-			terrain.vonNeumannIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/vonNeumannIcon.png", typeof(Texture2D));
-			terrain.mountainsIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/mountainsIcon.png", typeof(Texture2D));
-			terrain.hillsIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/hillsIcon.png", typeof(Texture2D));
-			terrain.plateausIcon = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/plateausIcon.png", typeof(Texture2D));
-			terrain.defaultTexture = (Texture2D) Resources.LoadAssetAtPath("Assets/TerrainToolkit/Textures/default.jpg", typeof(Texture2D));
+			terrain.guiSkin = (GUISkin) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/TerrainErosionEditorSkin.guiskin", typeof(GUISkin));
+			terrain.createIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/createIcon.png", typeof(Texture2D));
+			terrain.erodeIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/erodeIcon.png", typeof(Texture2D));
+			terrain.textureIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/textureIcon.png", typeof(Texture2D));
+			terrain.mooreIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/mooreIcon.png", typeof(Texture2D));
+			terrain.vonNeumannIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/vonNeumannIcon.png", typeof(Texture2D));
+			terrain.mountainsIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/mountainsIcon.png", typeof(Texture2D));
+			terrain.hillsIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/hillsIcon.png", typeof(Texture2D));
+			terrain.plateausIcon = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Editor/Resources/plateausIcon.png", typeof(Texture2D));
+			terrain.defaultTexture = (Texture2D) AssetDatabase.LoadAssetAtPath("Assets/TerrainToolkit/Textures/default.jpg", typeof(Texture2D));
 		}
 		if (!terrain.presetsInitialised) {
 			terrain.addPresets();

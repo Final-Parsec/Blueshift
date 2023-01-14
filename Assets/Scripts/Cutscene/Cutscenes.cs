@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
@@ -22,7 +23,7 @@ public class Cutscenes : MonoBehaviour{
 	private int waitTime = 5000;
 
 	void Start(){
-		io = new CutscenesIO (Application.loadedLevelName);
+		io = new CutscenesIO (SceneManager.GetActiveScene().name);
 		dialogue = GameObject.Find ("Dialogue").GetComponent<Text>();
 		speakerName = GameObject.Find ("CharName").GetComponent<Text> ();
 		portrait = GameObject.Find ("Portrait").GetComponent<Image>();
@@ -48,7 +49,7 @@ public class Cutscenes : MonoBehaviour{
 		{
 			currentSpeaker = "Loading " + sceneToLoad + "...";
 			SetSpeaker(currentSpeaker);
-			Application.LoadLevel(this.sceneToLoad);
+			SceneManager.LoadScene(this.sceneToLoad);
 		}
 		else
 		{
@@ -155,7 +156,7 @@ public class Cutscenes : MonoBehaviour{
 			portrait.enabled = true;
 			
 			portrait.color = new Color(255, 255, 255, 245);
-			portrait.sprite = Sprite.Create (portraitImage, new Rect(1,1,605,799), new Vector2(0, 0));//TODO: use screen.width/screen.height and make a percentage of it
+			portrait.sprite = Sprite.Create (portraitImage, new Rect(0,0, portraitImage.width, portraitImage.height), new Vector2(0, 0));
 		}
 	}
 

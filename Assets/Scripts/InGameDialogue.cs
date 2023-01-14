@@ -48,7 +48,7 @@ public class InGameDialogue : MonoBehaviour
         this.dialogue.text = string.Empty;
         var portraitImage = (Texture2D) Resources.Load("Portraits/" + speakerName);
         this.portrait.enabled = true;
-        this.portrait.sprite = Sprite.Create(portraitImage, new Rect(1, 1, 605, 799), new Vector2(0, 0));
+        this.portrait.sprite = Sprite.Create(portraitImage, new Rect(0, 0, portraitImage.width, portraitImage.height), new Vector2(0, 0));
         this.speaker.text = speakerName;
         while (this.background.color.a <= .39f)
         {

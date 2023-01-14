@@ -1,3 +1,7 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 #warning Upgrade NOTE: unity_Scale shader variable was removed; replaced 'unity_Scale.w' with '1.0'
 
 // Shader created with Shader Forge Beta 0.22 
@@ -59,9 +63,9 @@ Shader "Ramp/Diff Illum" {
                 VertexOutput o;
                 o.uv0 = v.uv0;
                 o.shLight = ShadeSH9(float4(v.normal * 1.0,1)) * 0.5;
-                o.normalDir = mul(float4(v.normal,0), _World2Object).xyz;
-                o.posWorld = mul(_Object2World, v.vertex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.normalDir = mul(float4(v.normal,0), unity_WorldToObject).xyz;
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }
@@ -125,9 +129,9 @@ Shader "Ramp/Diff Illum" {
             VertexOutput vert (VertexInput v) {
                 VertexOutput o;
                 o.uv0 = v.uv0;
-                o.normalDir = mul(float4(v.normal,0), _World2Object).xyz;
-                o.posWorld = mul(_Object2World, v.vertex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.normalDir = mul(float4(v.normal,0), unity_WorldToObject).xyz;
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
             }

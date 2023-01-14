@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 	void Start()
@@ -11,7 +12,7 @@ public class SceneLoader : MonoBehaviour {
 	{
 		Time.timeScale = 1f;
 		SaveLoad.Save();
-		Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 	
 	public static void LoadCutscene(int i)
@@ -21,7 +22,7 @@ public class SceneLoader : MonoBehaviour {
 		// Special handling for this as it indicates the end of the game.
 		if (i == -1)
 		{
-			Application.LoadLevel("Final Cutscene");
+			SceneManager.LoadScene("Final Cutscene");
 			return;
 		}
 	
@@ -30,7 +31,7 @@ public class SceneLoader : MonoBehaviour {
 			PersistentSettings.Current.highestUnlockedLevel = i;
 		}
 		SaveLoad.Save();
-		Application.LoadLevel("Cutscene " + i);
+		SceneManager.LoadScene("Cutscene " + i);
 	}
 	
 	public void StartCutscene(int i)
@@ -42,7 +43,7 @@ public class SceneLoader : MonoBehaviour {
 			PersistentSettings.Current.highestUnlockedLevel = i;
 		}
 		SaveLoad.Save();
-		Application.LoadLevel("Cutscene " + i);
+		SceneManager.LoadScene("Cutscene " + i);
 	}
 	
 	public void StartMission(int i)
@@ -50,7 +51,7 @@ public class SceneLoader : MonoBehaviour {
 		Time.timeScale = 1f;
 	
 		SaveLoad.Save();
-		Application.LoadLevel("Mission " + i);
+		SceneManager.LoadScene("Mission " + i);
 	}
 	
 	public void BackToMainMenu()
@@ -58,6 +59,6 @@ public class SceneLoader : MonoBehaviour {
 		Time.timeScale = 1f;
 	
 		SaveLoad.Save();
-		Application.LoadLevel("Main Menu");
+		SceneManager.LoadScene("Main Menu");
 	}
 }
