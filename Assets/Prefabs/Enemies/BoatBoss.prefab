@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105204}
-  m_Mesh: {fileID: 4300006, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
+  m_Mesh: {fileID: -1550514412580984892, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
 --- !u!23 &2338988
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133198}
-  m_Mesh: {fileID: 4300002, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
+  m_Mesh: {fileID: -5053925668127403250, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
 --- !u!23 &2321288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2604,7 +2604,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174470}
-  m_Mesh: {fileID: 4300008, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
+  m_Mesh: {fileID: 4493585093827132993, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
 --- !u!23 &2348558
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3067,7 +3067,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187102}
-  m_Mesh: {fileID: 4300004, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
+  m_Mesh: {fileID: -8678823145569952518, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
 --- !u!23 &2346112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3278,7 +3278,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198246}
-  m_LocalRotation: {x: -0.2316792, y: -0.6591855, z: -0.6806359, w: 0.22030447}
+  m_LocalRotation: {x: -0.23168223, y: -0.65918654, z: -0.68063205, w: 0.22031014}
   m_LocalPosition: {x: -453.3, y: 1.4, z: 3112.3}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
@@ -3291,7 +3291,7 @@ Transform:
   - {fileID: 481000}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -91.967, y: -133.422, z: -9.294006}
 --- !u!33 &3387874
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3352,7 +3352,7 @@ Animator:
   m_GameObject: {fileID: 198246}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c0ab043830c4ccc4e8e90cb028b00cb0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8bfca8fb00ef5141ba667bf988182be, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3391,9 +3391,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeRange: 400
-  mainComponent: {fileID: 0}
+  mainComponent: {fileID: 434146}
   deltaYDistance: 1
-  bobbingSpeed: 1
+  bobbingSpeed: 3.3
 --- !u!65 &6529482
 BoxCollider:
   m_ObjectHideFlags: 0
